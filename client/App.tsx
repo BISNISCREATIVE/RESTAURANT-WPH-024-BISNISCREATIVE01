@@ -12,6 +12,7 @@ import { store } from "@/store";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import RegisterPage from "./pages/Register";
+import LoginPage from "./pages/Login";
 
 const queryClient = new QueryClient();
 
