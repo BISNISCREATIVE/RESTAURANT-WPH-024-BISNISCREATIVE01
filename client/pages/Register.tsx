@@ -48,9 +48,14 @@ export default function RegisterPage() {
       try {
         const res = await api.post("/api/auth/register", payload);
         if (res?.data && res.data.success) {
-          // Save token and user
           const token = res.data.data?.token;
           const user = res.data.data?.user;
+          if (token && user) {
+            dispatch(setAuth({ token, user }));
+            alert("Registration successful");
+            navigate("/");
+            return;
+          }
           if (token) localStorage.setItem("auth_token", token);
           if (user) localStorage.setItem("auth_user", JSON.stringify(user));
           alert("Registration successful");
