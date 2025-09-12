@@ -11,6 +11,7 @@ import { Provider } from "react-redux";
 import { store } from "@/store";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import RegisterPage from "./pages/Register";
 
 const queryClient = new QueryClient();
 
