@@ -15,7 +15,7 @@ export default function LoginPage() {
 
   const onSubmit = async (values: Form) => {
     try {
-      const res = await api.post("/api/auth/login", {
+      const res = await api.post("/api/proxy/auth/login", {
         email: values.email,
         password: values.password,
       });

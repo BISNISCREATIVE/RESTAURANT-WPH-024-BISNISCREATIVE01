@@ -46,7 +46,7 @@ export default function RegisterPage() {
       };
 
       try {
-        const res = await api.post("/api/auth/register", payload);
+        const res = await api.post("/api/proxy/auth/register", payload);
         if (res?.data && res.data.success) {
           const token = res.data.data?.token;
           const user = res.data.data?.user;
