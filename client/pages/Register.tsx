@@ -84,17 +84,17 @@ export default function RegisterPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-white">
-      <div className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 shadow-lg rounded-lg overflow-hidden">
-        <div className="hidden md:block">
+      <div className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 shadow-lg rounded-lg overflow-hidden relative">
+        <div className="hidden md:block relative">
           <img
             src={
               "https://cdn.builder.io/api/v1/image/assets%2F54858901b0c442e6a38e6cc906052164%2Fc46cd16354934da7b037e58e77087ea3?format=webp&width=1200"
             }
             alt="Delicious burger"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover min-h-screen"
           />
         </div>
-        <div className="py-12 px-8 bg-white relative z-10">
+        <div className="py-12 px-8 bg-white relative z-30">
           <div className="max-w-md mx-auto w-full sm:w-[420px]">
             <div className="flex items-center gap-3 mb-6">
               <img src="/placeholder.svg" alt="logo" className="w-8 h-8" />
