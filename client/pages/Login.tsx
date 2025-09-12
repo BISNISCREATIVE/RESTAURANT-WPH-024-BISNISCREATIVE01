@@ -47,8 +47,8 @@ export default function LoginPage() {
             className="w-full h-full object-cover min-h-screen"
           />
         </div>
-        <div className="py-12 px-8 bg-white relative z-30">
-          <div className="max-w-md mx-auto w-full sm:w-[420px]">
+        <div className="py-12 px-8 bg-white relative z-30 flex items-center">
+          <div className="max-w-md mx-auto w-full sm:w-[420px] flex flex-col justify-center">
             <div className="flex items-center gap-3 mb-6">
               <img src="/placeholder.svg" alt="logo" className="w-8 h-8" />
               <div className="text-2xl font-extrabold">Foody</div>
@@ -59,8 +59,8 @@ export default function LoginPage() {
             <div className="mb-6">
               <div className="relative bg-slate-100 rounded-full p-1 w-full max-w-[320px]">
                 <div className="flex">
-                  <button className="flex-1 rounded-full bg-white shadow-sm py-2">Sign in</button>
-                  <button onClick={() => navigate('/register')} className="flex-1 rounded-full py-2">Sign up</button>
+                  <button className="flex-1 rounded-full bg-white shadow-sm py-2 text-sm font-medium">Sign in</button>
+                  <button onClick={() => navigate('/register')} className="flex-1 rounded-full py-2 text-sm text-slate-700">Sign up</button>
                 </div>
               </div>
             </div>
