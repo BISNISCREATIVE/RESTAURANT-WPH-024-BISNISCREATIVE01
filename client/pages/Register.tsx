@@ -4,6 +4,8 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import api from "@/services/api/axios";
 import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from "@/store";
+import { setAuth } from "@/features/auth/authSlice";
 
 const registerSchema = z
   .object({
