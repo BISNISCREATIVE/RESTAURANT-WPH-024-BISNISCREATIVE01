@@ -44,18 +44,27 @@ export default function RegisterPage() {
 
       try {
         const res = await api.post("/api/auth/register", payload);
-        if (res?.data) {
-          // assume success
+        if (res?.data && res.data.success) {
+          // Save token and user
+          const token = res.data.data?.token;
+          const user = res.data.data?.user;
+          if (token) localStorage.setItem("auth_token", token);
+          if (user) localStorage.setItem("auth_user", JSON.stringify(user));
           alert("Registration successful");
           navigate("/");
           return;
         }
-      } catch (err) {
-        // fallback: save to localStorage
-        const users = JSON.parse(localStorage.getItem("mock_users" ) || "[]");
+        // If server returned an unexpected success shape, fallback to notify
+        alert("Registration completed but unexpected server response.");
+        navigate("/");
+        return;
+      } catch (err: any) {
+        // If network or server error, fallback to local storage mock
+        console.warn("Register API failed:", err?.response ?? err?.message ?? err);
+        const users = JSON.parse(localStorage.getItem("mock_users") || "[]");
         users.push({ id: Date.now(), ...payload });
         localStorage.setItem("mock_users", JSON.stringify(users));
-        alert("Registration saved locally (no server endpoint). You can now sign in.");
+        alert("Registration saved locally (server not reachable). You can now sign in.");
         navigate("/");
         return;
       }
