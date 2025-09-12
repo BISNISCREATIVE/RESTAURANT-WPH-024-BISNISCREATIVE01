@@ -33,6 +33,7 @@ export default function RegisterPage() {
   } = useForm<RegisterForm>({ resolver: zodResolver(registerSchema) });
 
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const onSubmit = async (values: RegisterForm) => {
     try {
