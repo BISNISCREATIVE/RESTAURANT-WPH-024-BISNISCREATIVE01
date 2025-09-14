@@ -63,30 +63,34 @@ export default function Navbar({
           >
             <User className="h-5 w-5" />
           </Button>
-          {(() => {
-            const authed = !!(
-              localStorage.getItem("auth_token") ||
-              sessionStorage.getItem("auth_token")
-            );
-            return !authed ? (
-              <Button variant="outline" onClick={() => nav("/auth")}>
-                {" "}
-                <LogIn className="h-4 w-4 mr-1" /> Login
-              </Button>
-            ) : (
-              <Button
-                variant="outline"
-                onClick={() => {
-                  localStorage.removeItem("auth_token");
-                  sessionStorage.removeItem("auth_token");
-                  window.location.reload();
-                }}
+          {authed ? (
+            <Button
+              variant="outline"
+              onClick={() => {
+                localStorage.removeItem("auth_token");
+                sessionStorage.removeItem("auth_token");
+                window.location.reload();
+              }}
+            >
+              {" "}
+              <LogOut className="h-4 w-4 mr-1" /> Logout
+            </Button>
+          ) : (
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => nav("/auth")}
+                className={`hidden sm:inline-block rounded-full px-4 py-1 border ${isScrolled ? "bg-white text-slate-900" : "bg-white/10 text-white"}`}
               >
-                {" "}
-                <LogOut className="h-4 w-4 mr-1" /> Logout
-              </Button>
-            );
-          })()}
+                Sign In
+              </button>
+              <button
+                onClick={() => nav("/register")}
+                className={`rounded-full px-4 py-1 ${isScrolled ? "bg-firebrick text-white" : "bg-white text-slate-900"}`}
+              >
+                Sign Up
+              </button>
+            </div>
+          )}
           <Button onClick={onOpenCart} className="relative rounded-full">
             <ShoppingCart className="h-5 w-5" />
             {count > 0 && (
