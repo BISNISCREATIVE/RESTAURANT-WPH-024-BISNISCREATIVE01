@@ -37,7 +37,7 @@ export default function LoginPage() {
         <div className="hidden md:block md:w-1/2 h-full">
           <img
             src={
-              "https://cdn.builder.io/api/v1/image/assets%2F54858901b0c442e6a38e6cc906052164%2F96f8604f81ff4cc5b6792324ef5f74fe?format=webp&width=1200"
+              "https://cdn.builder.io/api/v1/image/assets%2F54858901b0c442e6a38e6cc906052164%2F1a9d63ce5b964b9ebc9487ea6ed3b1dc?format=webp&width=1200"
             }
             alt="hero"
             className="w-full h-full object-cover"
