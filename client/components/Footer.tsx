@@ -11,16 +11,16 @@ export default function Footer() {
           </p>
           <div className="mt-6 text-sm font-semibold text-gray-200">Follow on Social Media</div>
           <div className="flex gap-3 mt-3">
-            <a aria-label="Facebook" className="h-10 w-10 rounded-full border border-gray-700 grid place-items-center">
+            <a href="https://facebook.com" target="_blank" rel="noreferrer" aria-label="Facebook" className="h-10 w-10 rounded-full border border-gray-700 grid place-items-center">
               <img src="/icons/facebook.svg" alt="facebook" className="w-4 h-4" />
             </a>
-            <a aria-label="Instagram" className="h-10 w-10 rounded-full border border-gray-700 grid place-items-center">
+            <a href="https://instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram" className="h-10 w-10 rounded-full border border-gray-700 grid place-items-center">
               <img src="/icons/instagram.svg" alt="instagram" className="w-4 h-4" />
             </a>
-            <a aria-label="LinkedIn" className="h-10 w-10 rounded-full border border-gray-700 grid place-items-center">
+            <a href="https://linkedin.com" target="_blank" rel="noreferrer" aria-label="LinkedIn" className="h-10 w-10 rounded-full border border-gray-700 grid place-items-center">
               <img src="/icons/linkedin.svg" alt="linkedin" className="w-4 h-4" />
             </a>
-            <a aria-label="TikTok" className="h-10 w-10 rounded-full border border-gray-700 grid place-items-center">
+            <a href="https://tiktok.com" target="_blank" rel="noreferrer" aria-label="TikTok" className="h-10 w-10 rounded-full border border-gray-700 grid place-items-center">
               <img src="/icons/tiktok.svg" alt="tiktok" className="w-4 h-4" />
             </a>
           </div>
