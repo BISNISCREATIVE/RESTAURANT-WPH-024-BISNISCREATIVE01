@@ -42,8 +42,14 @@ export default function Navbar({
       <header className={headerClass}>
         <div className="mx-auto max-w-6xl px-4 h-16 flex items-center gap-3">
           <Link to="/" className="flex items-center gap-2">
-            <img src="https://cdn.builder.io/api/v1/image/assets%2F54858901b0c442e6a38e6cc906052164%2F462b12e4225140b88803a67447d747f3?format=webp&width=800" alt="Foody" className="w-8 h-8" />
-            <span className="font-extrabold text-2xl tracking-tight">Foody</span>
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets%2F54858901b0c442e6a38e6cc906052164%2F462b12e4225140b88803a67447d747f3?format=webp&width=800"
+              alt="Foody"
+              className="w-8 h-8"
+            />
+            <span className="font-extrabold text-2xl tracking-tight">
+              Foody
+            </span>
           </Link>
           <div className="hidden md:flex items-center gap-2 flex-1 max-w-xl mx-auto">
             <div className="relative w-full">
@@ -91,19 +97,20 @@ export default function Navbar({
               </>
             ) : (
               (() => {
-                const path = location.pathname || '';
-                const showHeaderAuth = !path.startsWith('/auth') && !path.startsWith('/register');
+                const path = location.pathname || "";
+                const showHeaderAuth =
+                  !path.startsWith("/auth") && !path.startsWith("/register");
                 return showHeaderAuth ? (
                   <div className="flex items-center gap-2">
                     <button
-                      onClick={() => nav('/auth')}
-                      className={`hidden sm:inline-block rounded-full px-4 py-1 border ${isScrolled ? 'bg-white text-slate-900' : 'bg-white/10 text-white'}`}
+                      onClick={() => nav("/auth")}
+                      className={`hidden sm:inline-block rounded-full px-4 py-1 border ${isScrolled ? "bg-white text-slate-900" : "bg-white/10 text-white"}`}
                     >
                       Sign In
                     </button>
                     <button
-                      onClick={() => nav('/register')}
-                      className={`rounded-full px-4 py-1 ${isScrolled ? 'bg-firebrick text-white' : 'bg-white text-slate-900'}`}
+                      onClick={() => nav("/register")}
+                      className={`rounded-full px-4 py-1 ${isScrolled ? "bg-firebrick text-white" : "bg-white text-slate-900"}`}
                     >
                       Sign Up
                     </button>

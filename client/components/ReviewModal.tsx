@@ -14,7 +14,11 @@ export default function ReviewModal({ restaurantId, onClose }: Props) {
   const qc = useQueryClient();
 
   const mutation = useMutation({
-    mutationFn: async (payload: { restaurantId: string | number; rating: number; comment: string }) => {
+    mutationFn: async (payload: {
+      restaurantId: string | number;
+      rating: number;
+      comment: string;
+    }) => {
       const res = await api.post(`/review`, payload);
       return res.data;
     },
@@ -42,7 +46,13 @@ export default function ReviewModal({ restaurantId, onClose }: Props) {
       <div className="w-full max-w-md bg-white rounded-2xl shadow-lg p-6">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-lg font-semibold">Give Review</h3>
-          <button onClick={onClose} aria-label="close" className="text-gray-500">✕</button>
+          <button
+            onClick={onClose}
+            aria-label="close"
+            className="text-gray-500"
+          >
+            ✕
+          </button>
         </div>
         <div className="text-center mb-4">
           <div className="font-semibold">Give Rating</div>

@@ -46,17 +46,30 @@ export default function LoginPage() {
         <div className="py-12 px-8 bg-white relative z-30 flex items-center md:w-[480px] md:flex-shrink-0">
           <div className="max-w-md mx-auto w-full sm:w-[420px] flex flex-col justify-center">
             <div className="flex items-center gap-3 mb-6">
-              <img src="https://cdn.builder.io/api/v1/image/assets%2F54858901b0c442e6a38e6cc906052164%2Fbea3fb0257464385828d43cc8deb72cf?format=webp&width=120" alt="Foody logo" className="w-8 h-8" />
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets%2F54858901b0c442e6a38e6cc906052164%2Fbea3fb0257464385828d43cc8deb72cf?format=webp&width=120"
+                alt="Foody logo"
+                className="w-8 h-8"
+              />
               <div className="text-2xl font-extrabold">Foody</div>
             </div>
             <h2 className="text-3xl font-extrabold mb-1">Welcome Back</h2>
-            <p className="text-sm text-slate-600 mb-6">Good to see you again! Let’s eat</p>
+            <p className="text-sm text-slate-600 mb-6">
+              Good to see you again! Let’s eat
+            </p>
 
             <div className="mb-6">
               <div className="relative bg-slate-100 rounded-full p-1 w-full max-w-[320px]">
                 <div className="flex">
-                  <button className="flex-1 rounded-full bg-white shadow-sm py-2 text-sm font-medium">Sign in</button>
-                  <button onClick={() => navigate('/register')} className="flex-1 rounded-full py-2 text-sm text-slate-700">Sign up</button>
+                  <button className="flex-1 rounded-full bg-white shadow-sm py-2 text-sm font-medium">
+                    Sign in
+                  </button>
+                  <button
+                    onClick={() => navigate("/register")}
+                    className="flex-1 rounded-full py-2 text-sm text-slate-700"
+                  >
+                    Sign up
+                  </button>
                 </div>
               </div>
             </div>
@@ -68,7 +81,9 @@ export default function LoginPage() {
                   placeholder="Email"
                   className="w-full rounded-lg border p-3 border-slate-200 focus:outline-none focus:ring-2 focus:ring-red-400"
                 />
-                {errors?.email && <p className="text-sm text-red-600">{errors.email.message}</p>}
+                {errors?.email && (
+                  <p className="text-sm text-red-600">{errors.email.message}</p>
+                )}
               </div>
 
               <div>
@@ -78,11 +93,19 @@ export default function LoginPage() {
                   type="password"
                   className="w-full rounded-lg border p-3 border-slate-200 focus:outline-none focus:ring-2 focus:ring-red-400"
                 />
-                {errors?.password && <p className="text-sm text-red-600">{errors.password.message}</p>}
+                {errors?.password && (
+                  <p className="text-sm text-red-600">
+                    {errors.password.message}
+                  </p>
+                )}
               </div>
 
               <div className="flex items-center gap-2">
-                <input id="remember" type="checkbox" {...register("remember")} />
+                <input
+                  id="remember"
+                  type="checkbox"
+                  {...register("remember")}
+                />
                 <label htmlFor="remember">Remember Me</label>
               </div>
 

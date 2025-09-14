@@ -46,7 +46,11 @@ export default function RegisterPage() {
       };
 
       try {
-        const res = await registerApi(payload.name, payload.email, payload.password);
+        const res = await registerApi(
+          payload.name,
+          payload.email,
+          payload.password,
+        );
         if (res?.data && (res.data.success || res.success)) {
           const token = res.data?.data?.token || res?.data?.token || res?.token;
           const user = res.data?.data?.user || res?.data?.user || res?.user;
@@ -75,11 +79,16 @@ export default function RegisterPage() {
         return;
       } catch (err: any) {
         // If network or server error, fallback to local storage mock
-        console.warn("Register API failed:", err?.response ?? err?.message ?? err);
+        console.warn(
+          "Register API failed:",
+          err?.response ?? err?.message ?? err,
+        );
         const users = JSON.parse(localStorage.getItem("mock_users") || "[]");
         users.push({ id: Date.now(), ...payload });
         localStorage.setItem("mock_users", JSON.stringify(users));
-        alert("Registration saved locally (server not reachable). You can now sign in.");
+        alert(
+          "Registration saved locally (server not reachable). You can now sign in.",
+        );
         navigate("/");
         return;
       }
@@ -104,17 +113,30 @@ export default function RegisterPage() {
         <div className="py-12 px-8 bg-white relative z-30 flex items-center md:w-[480px] md:flex-shrink-0">
           <div className="max-w-md mx-auto w-full sm:w-[420px] flex flex-col justify-center">
             <div className="flex items-center gap-3 mb-6">
-              <img src="https://cdn.builder.io/api/v1/image/assets%2F54858901b0c442e6a38e6cc906052164%2Fbea3fb0257464385828d43cc8deb72cf?format=webp&width=120" alt="Foody logo" className="w-8 h-8" />
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets%2F54858901b0c442e6a38e6cc906052164%2Fbea3fb0257464385828d43cc8deb72cf?format=webp&width=120"
+                alt="Foody logo"
+                className="w-8 h-8"
+              />
               <div className="text-2xl font-extrabold">Foody</div>
             </div>
             <h2 className="text-3xl font-extrabold mb-1">Welcome Back</h2>
-            <p className="text-sm text-slate-600 mb-6">Good to see you again! Let’s eat</p>
+            <p className="text-sm text-slate-600 mb-6">
+              Good to see you again! Let’s eat
+            </p>
 
             <div className="mb-6">
               <div className="relative bg-slate-100 rounded-full p-1 w-full max-w-[320px]">
                 <div className="flex">
-                  <button onClick={() => navigate('/login')} className="flex-1 rounded-full py-2 text-sm text-slate-700">Sign in</button>
-                  <button className="flex-1 rounded-full bg-white shadow-sm py-2 text-sm font-medium">Sign up</button>
+                  <button
+                    onClick={() => navigate("/login")}
+                    className="flex-1 rounded-full py-2 text-sm text-slate-700"
+                  >
+                    Sign in
+                  </button>
+                  <button className="flex-1 rounded-full bg-white shadow-sm py-2 text-sm font-medium">
+                    Sign up
+                  </button>
                 </div>
               </div>
             </div>
@@ -130,7 +152,9 @@ export default function RegisterPage() {
                   }`}
                 />
                 {errors.name && (
-                  <p className="mt-1 text-sm text-red-600">{errors.name.message}</p>
+                  <p className="mt-1 text-sm text-red-600">
+                    {errors.name.message}
+                  </p>
                 )}
               </div>
 
@@ -144,7 +168,9 @@ export default function RegisterPage() {
                   }`}
                 />
                 {errors.email && (
-                  <p className="mt-1 text-sm text-red-600">{errors.email.message}</p>
+                  <p className="mt-1 text-sm text-red-600">
+                    {errors.email.message}
+                  </p>
                 )}
               </div>
 
@@ -158,7 +184,9 @@ export default function RegisterPage() {
                   }`}
                 />
                 {errors.phone && (
-                  <p className="mt-1 text-sm text-red-600">{errors.phone.message}</p>
+                  <p className="mt-1 text-sm text-red-600">
+                    {errors.phone.message}
+                  </p>
                 )}
               </div>
 
@@ -173,7 +201,9 @@ export default function RegisterPage() {
                   }`}
                 />
                 {errors.password && (
-                  <p className="mt-1 text-sm text-red-600">{errors.password.message}</p>
+                  <p className="mt-1 text-sm text-red-600">
+                    {errors.password.message}
+                  </p>
                 )}
               </div>
 
@@ -184,11 +214,15 @@ export default function RegisterPage() {
                   type="password"
                   aria-invalid={errors.confirmPassword ? "true" : "false"}
                   className={`w-full rounded-lg border p-3 focus:outline-none focus:ring-2 focus:ring-red-400 ${
-                    errors.confirmPassword ? "border-red-300" : "border-slate-200"
+                    errors.confirmPassword
+                      ? "border-red-300"
+                      : "border-slate-200"
                   }`}
                 />
                 {errors.confirmPassword && (
-                  <p className="mt-1 text-sm text-red-600">{errors.confirmPassword.message}</p>
+                  <p className="mt-1 text-sm text-red-600">
+                    {errors.confirmPassword.message}
+                  </p>
                 )}
               </div>
 

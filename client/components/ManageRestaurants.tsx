@@ -2,9 +2,17 @@ import * as React from "react";
 import { useState } from "react";
 import { useQueryClient, useMutation } from "@tanstack/react-query";
 import { useRestaurantsQuery } from "@/services/queries/resto";
-import { createRestaurant, updateRestaurant, deleteRestaurant } from "@/services/api/restaurants";
+import {
+  createRestaurant,
+  updateRestaurant,
+  deleteRestaurant,
+} from "@/services/api/restaurants";
 
-export default function ManageRestaurants({ onClose }: { onClose: () => void }) {
+export default function ManageRestaurants({
+  onClose,
+}: {
+  onClose: () => void;
+}) {
   const qc = useQueryClient();
   const { data: restaurants = [], isLoading } = useRestaurantsQuery();
   const [editing, setEditing] = useState<any | null>(null);
@@ -24,7 +32,12 @@ export default function ManageRestaurants({ onClose }: { onClose: () => void }) 
   });
 
   React.useEffect(() => {
-    if (editing) setForm({ name: editing.name || "", city: editing.city || "", rating: editing.rating || 0 });
+    if (editing)
+      setForm({
+        name: editing.name || "",
+        city: editing.city || "",
+        rating: editing.rating || 0,
+      });
     else setForm({ name: "", city: "", rating: 0 });
   }, [editing]);
 
@@ -49,7 +62,9 @@ export default function ManageRestaurants({ onClose }: { onClose: () => void }) 
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-lg font-semibold">Manage Restaurants</h3>
           <div className="flex items-center gap-2">
-            <button onClick={onClose} className="text-sm text-muted-foreground">Close</button>
+            <button onClick={onClose} className="text-sm text-muted-foreground">
+              Close
+            </button>
           </div>
         </div>
 
@@ -58,12 +73,21 @@ export default function ManageRestaurants({ onClose }: { onClose: () => void }) 
             <div className="font-semibold mb-2">List</div>
             <div className="space-y-2 max-h-[420px] overflow-auto">
               {isLoading && <div>Loading...</div>}
-              {(!restaurants || restaurants.length === 0) && <div className="text-sm text-muted-foreground">No restaurants</div>}
+              {(!restaurants || restaurants.length === 0) && (
+                <div className="text-sm text-muted-foreground">
+                  No restaurants
+                </div>
+              )}
               {restaurants.map((r: any) => (
-                <div key={r.id} className="bg-muted p-3 rounded flex items-center justify-between">
+                <div
+                  key={r.id}
+                  className="bg-muted p-3 rounded flex items-center justify-between"
+                >
                   <div>
                     <div className="font-semibold">{r.name}</div>
-                    <div className="text-sm text-muted-foreground">{r.city}</div>
+                    <div className="text-sm text-muted-foreground">
+                      {r.city}
+                    </div>
                   </div>
                   <div className="flex items-center gap-2">
                     <button
@@ -74,7 +98,8 @@ export default function ManageRestaurants({ onClose }: { onClose: () => void }) 
                     </button>
                     <button
                       onClick={() => {
-                        if (confirm('Delete this restaurant?')) deleteMut.mutate(r.id);
+                        if (confirm("Delete this restaurant?"))
+                          deleteMut.mutate(r.id);
                       }}
                       className="text-sm px-2 py-1 rounded bg-red-600 text-white"
                     >
@@ -87,23 +112,56 @@ export default function ManageRestaurants({ onClose }: { onClose: () => void }) 
           </div>
 
           <div>
-            <div className="font-semibold mb-2">{editing ? "Edit" : "Create"} Restaurant</div>
+            <div className="font-semibold mb-2">
+              {editing ? "Edit" : "Create"} Restaurant
+            </div>
             <form onSubmit={submit} className="space-y-3">
               <div>
                 <label className="block text-sm mb-1">Name</label>
-                <input value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className="w-full rounded border p-2" />
+                <input
+                  value={form.name}
+                  onChange={(e) => setForm({ ...form, name: e.target.value })}
+                  className="w-full rounded border p-2"
+                />
               </div>
               <div>
                 <label className="block text-sm mb-1">City</label>
-                <input value={form.city} onChange={(e) => setForm({ ...form, city: e.target.value })} className="w-full rounded border p-2" />
+                <input
+                  value={form.city}
+                  onChange={(e) => setForm({ ...form, city: e.target.value })}
+                  className="w-full rounded border p-2"
+                />
               </div>
               <div>
                 <label className="block text-sm mb-1">Rating</label>
-                <input value={String(form.rating)} onChange={(e) => setForm({ ...form, rating: Number(e.target.value) })} type="number" min={0} max={5} step={0.1} className="w-full rounded border p-2" />
+                <input
+                  value={String(form.rating)}
+                  onChange={(e) =>
+                    setForm({ ...form, rating: Number(e.target.value) })
+                  }
+                  type="number"
+                  min={0}
+                  max={5}
+                  step={0.1}
+                  className="w-full rounded border p-2"
+                />
               </div>
               <div className="flex items-center gap-2 mt-2">
-                <button type="submit" className="rounded bg-red-600 text-white px-4 py-2">{editing ? 'Save' : 'Create'}</button>
-                {editing && <button type="button" onClick={() => setEditing(null)} className="rounded border px-4 py-2">Cancel</button>}
+                <button
+                  type="submit"
+                  className="rounded bg-red-600 text-white px-4 py-2"
+                >
+                  {editing ? "Save" : "Create"}
+                </button>
+                {editing && (
+                  <button
+                    type="button"
+                    onClick={() => setEditing(null)}
+                    className="rounded border px-4 py-2"
+                  >
+                    Cancel
+                  </button>
+                )}
               </div>
             </form>
           </div>
