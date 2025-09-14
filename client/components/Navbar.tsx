@@ -17,6 +17,7 @@ export default function Navbar({
   );
   const [q, setQ] = useState("");
   const nav = useNavigate();
+  const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
