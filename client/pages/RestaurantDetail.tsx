@@ -4,6 +4,7 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import { useRestaurantDetailQuery } from "@/services/queries/resto";
 import { Button } from "@/components/ui/button";
 import { useMemo, useState } from "react";
+import ReviewModal from "@/components/ReviewModal";
 import ProductCard from "@/components/ProductCard";
 import { useAppSelector } from "@/store";
 import { Star, Share2 } from "lucide-react";
