@@ -67,22 +67,6 @@ export default function Auth() {
                 Good to see you again! Let’s eat
               </div>
             </div>
-            <div className="rounded-2xl bg-muted p-1 flex mb-4">
-              <button
-                className={`flex-1 h-10 rounded-xl ${mode === "login" ? "bg-white font-bold" : "text-muted-foreground"}`}
-                onClick={() => setMode("login")}
-                type="button"
-              >
-                Sign in
-              </button>
-              <button
-                className={`flex-1 h-10 rounded-xl ${mode === "register" ? "bg-white font-bold" : "text-muted-foreground"}`}
-                onClick={() => setMode("register")}
-                type="button"
-              >
-                Sign up
-              </button>
-            </div>
             <form className="space-y-3" onSubmit={onSubmit}>
               {mode === "register" && (
                 <div>
