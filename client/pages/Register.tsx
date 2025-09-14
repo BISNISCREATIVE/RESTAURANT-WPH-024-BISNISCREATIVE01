@@ -92,7 +92,7 @@ export default function RegisterPage() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-white">
       <div className="max-w-6xl w-full flex flex-col md:flex-row shadow-lg rounded-lg overflow-hidden relative min-h-[640px]">
-        <div className="hidden md:flex md:flex-1 h-full">
+        <div className="hidden md:block md:w-1/2 h-full">
           <img
             src={
               "https://cdn.builder.io/api/v1/image/assets%2F54858901b0c442e6a38e6cc906052164%2Fc46cd16354934da7b037e58e77087ea3?format=webp&width=1200"
