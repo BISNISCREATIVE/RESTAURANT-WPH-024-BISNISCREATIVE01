@@ -17,9 +17,25 @@ export default function Navbar({
   );
   const [q, setQ] = useState("");
   const nav = useNavigate();
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setIsScrolled(window.scrollY > 20);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const authed = !!(
+    localStorage.getItem("auth_token") || sessionStorage.getItem("auth_token")
+  );
+
+  const headerClass = isScrolled
+    ? "sticky top-0 z-40 w-full backdrop-blur supports-[backdrop-filter]:bg-white/70 bg-white/80 border-b text-slate-900"
+    : "absolute top-0 z-40 w-full bg-transparent text-white";
 
   return (
-    <header className="sticky top-0 z-40 w-full backdrop-blur supports-[backdrop-filter]:bg-white/70 bg-white/80 border-b">
+    <header className={headerClass}>
       <div className="mx-auto max-w-6xl px-4 h-16 flex items-center gap-3">
         <Link to="/" className="font-extrabold text-2xl tracking-tight">
           Foody
