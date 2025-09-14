@@ -33,8 +33,8 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-white">
-      <div className="max-w-6xl w-full grid grid-cols-1 md:[grid-template-columns:1fr_minmax(360px,480px)] shadow-lg rounded-lg overflow-hidden relative min-h-[640px]">
-        <div className="hidden md:block h-full">
+      <div className="max-w-6xl w-full flex flex-col md:flex-row shadow-lg rounded-lg overflow-hidden relative min-h-[640px]">
+        <div className="hidden md:flex md:flex-1 h-full">
           <img
             src={
               "https://cdn.builder.io/api/v1/image/assets%2F54858901b0c442e6a38e6cc906052164%2F96f8604f81ff4cc5b6792324ef5f74fe?format=webp&width=1200"
@@ -43,7 +43,7 @@ export default function LoginPage() {
             className="w-full h-full object-cover"
           />
         </div>
-        <div className="py-12 px-8 bg-white relative z-30 flex items-center">
+        <div className="py-12 px-8 bg-white relative z-30 flex items-center md:w-[480px] md:flex-shrink-0">
           <div className="max-w-md mx-auto w-full sm:w-[420px] flex flex-col justify-center">
             <div className="flex items-center gap-3 mb-6">
               <img src="/placeholder.svg" alt="logo" className="w-8 h-8" />
