@@ -79,8 +79,7 @@ export default function Navbar({
             </Button>
           ) : (
             (() => {
-              const loc = useLocation();
-              const path = loc.pathname || '';
+              const path = location.pathname || '';
               const showHeaderAuth = !path.startsWith('/auth') && !path.startsWith('/register');
               return showHeaderAuth ? (
                 <div className="flex items-center gap-2">
