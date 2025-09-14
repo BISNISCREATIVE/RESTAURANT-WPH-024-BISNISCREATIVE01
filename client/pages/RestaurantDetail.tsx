@@ -153,6 +153,7 @@ export default function RestaurantDetail() {
               <div className="border-t my-8" />
 
               <section className="space-y-3">
+                {/* Give review modal trigger */}
                 <div className="text-3xl font-extrabold">Review</div>
                 <div className="flex items-center gap-2 text-muted-foreground">
                   <Star className="h-5 w-5 text-yellow-500" />
