@@ -3,9 +3,11 @@ import type { CartItem } from "@/types";
 
 export type CartState = { items: CartItem[] };
 
-const initialState: CartState = { items: [] };
+const initialState: CartState = {
+  items: [],
+};
 
-const cartSlice = createSlice({
+const slice = createSlice({
   name: "cart",
   initialState,
   reducers: {
@@ -14,18 +16,25 @@ const cartSlice = createSlice({
       if (found) found.qty += action.payload.qty;
       else state.items.push({ ...action.payload });
     },
-    updateQty: (state, action: PayloadAction<{ id: string; qty: number }>) => {
+    updateQty: (
+      state,
+      action: PayloadAction<{ id: CartItem["id"]; qty: number }>,
+    ) => {
       const it = state.items.find((i) => i.id === action.payload.id);
       if (it) it.qty = Math.max(1, action.payload.qty);
     },
-    removeFromCart: (state, action: PayloadAction<string>) => {
+    removeFromCart: (state, action: PayloadAction<CartItem["id"]>) => {
       state.items = state.items.filter((i) => i.id !== action.payload);
     },
     clearCart: (state) => {
       state.items = [];
     },
+    setCart: (state, action: PayloadAction<CartItem[]>) => {
+      state.items = action.payload;
+    },
   },
 });
 
-export const { addToCart, updateQty, removeFromCart, clearCart } = cartSlice.actions;
-export default cartSlice.reducer;
+export const { addToCart, updateQty, removeFromCart, clearCart, setCart } =
+  slice.actions;
+export default slice.reducer;
