@@ -15,13 +15,13 @@ export default function Footer() {
         <div className="mt-6 text-sm font-semibold text-gray-200">Follow on Social Media</div>
         <div className="flex gap-3 mt-3">
           <a href="https://facebook.com" target="_blank" rel="noreferrer" aria-label="Facebook" className="h-10 w-10 rounded-full border border-gray-700 grid place-items-center">
-            <img src="https://cdn.builder.io/api/v1/image/assets%2F54858901b0c442e6a38e6cc906052164%2F12026922be734696948da66d9b86e840?format=webp&width=200" alt="facebook" className="w-5 h-5" />
+              <img src="" https://cdn.builder.io/api/v1/image/assets%2F54858901b0c442e6a38e6cc906052164%2F7cea849898e0474fa51d2a2c751ba270?format=webp&width=200" alt="facebook" className="w-5 h-5" />
           </a>
           <a href="https://instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram" className="h-10 w-10 rounded-full border border-gray-700 grid place-items-center">
             <img src="https://cdn.builder.io/api/v1/image/assets%2F54858901b0c442e6a38e6cc906052164%2Fd4a5f48743594c818038d7d51e1f6877?format=webp&width=200" alt="instagram" className="w-5 h-5" />
           </a>
           <a href="https://linkedin.com" target="_blank" rel="noreferrer" aria-label="LinkedIn" className="h-10 w-10 rounded-full border border-gray-700 grid place-items-center">
-            <img src="https://cdn.builder.io/api/v1/image/assets%2F54858901b0c442e6a38e6cc906052164%2F9d251aae2446439e9ff1b3b5e158d2cb?format=webp&width=200" alt="linkedin" className="w-5 h-5" />
+              <img src="https://cdn.builder.io/api/v1/image/assets%2F54858901b0c442e6a38e6cc906052164%2F12026922be734696948da66d9b86e840?format=webp&width=200" alt="linkedin" className="w-5 h-5" />
           </a>
           <a href="https://tiktok.com" target="_blank" rel="noreferrer" aria-label="TikTok" className="h-10 w-10 rounded-full border border-gray-700 grid place-items-center">
               <img src="https://cdn.builder.io/api/v1/image/assets%2F54858901b0c442e6a38e6cc906052164%2F9d251aae2446439e9ff1b3b5e158d2cb?format=webp&width=200" alt="tiktok" className="w-5 h-5" />
