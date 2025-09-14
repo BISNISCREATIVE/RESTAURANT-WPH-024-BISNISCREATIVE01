@@ -165,6 +165,20 @@ export default function RestaurantDetail() {
                     Ulasan )
                   </div>
                 </div>
+                <div className="flex items-center justify-between mt-4">
+                  <div className="text-sm text-muted-foreground">
+                    {Array.isArray((data as any).reviews) ? (data as any).reviews.length : 0} reviews
+                  </div>
+                  <div>
+                    <button
+                      onClick={() => setShowReview(true)}
+                      className="rounded-full bg-firebrick text-white px-4 py-2"
+                    >
+                      Give Review
+                    </button>
+                  </div>
+                </div>
+
                 <div className="grid md:grid-cols-2 gap-5 mt-4">
                   {(((data as any).reviews || []) as any[]).map((rv, idx) => (
                     <div
@@ -212,6 +226,10 @@ export default function RestaurantDetail() {
           )}
         </div>
       </main>
+
+      {showReview && (
+        <ReviewModal restaurantId={data?.id} onClose={() => setShowReview(false)} />
+      )}
 
       <Footer />
 
