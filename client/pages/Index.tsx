@@ -34,26 +34,6 @@ export default function Index() {
           className="h-[420px] md:h-[560px] w-full object-cover"
         />
         <div className="absolute inset-0 bg-black/40" />
-        {/* Sign in / Sign up bubble (only when logged out) */}
-        {!(
-          localStorage.getItem("auth_token") ||
-          sessionStorage.getItem("auth_token")
-        ) && (
-          <div className="absolute right-6 top-6 flex gap-3">
-            <a
-              href="/auth?mode=login"
-              className="rounded-full border border-white/70 text-white px-5 h-11 flex items-center font-semibold backdrop-blur bg-white/10"
-            >
-              Sign In
-            </a>
-            <a
-              href="/auth?mode=register"
-              className="rounded-full bg-white text-gray-900 px-5 h-11 flex items-center font-semibold"
-            >
-              Sign Up
-            </a>
-          </div>
-        )}
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="text-center text-white px-4">
             <h1 className="text-3xl md:text-5xl font-extrabold mb-2 drop-shadow">
