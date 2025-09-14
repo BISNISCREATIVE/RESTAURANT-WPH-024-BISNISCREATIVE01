@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { useAppSelector } from "@/store";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
+import ManageRestaurants from "@/components/ManageRestaurants";
 
 export default function Navbar({
   onOpenCart,
