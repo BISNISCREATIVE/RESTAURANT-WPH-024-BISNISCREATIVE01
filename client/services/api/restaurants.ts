@@ -1,16 +1,16 @@
 import axios from "./axios";
 
 export async function createRestaurant(payload: any) {
-  const { data } = await axios.post("/api/proxy/resto", payload);
+  const { data } = await axios.post(`/resto`, payload);
   return data;
 }
 
 export async function updateRestaurant(id: string | number, payload: any) {
-  const { data } = await axios.put(`/api/proxy/resto/${id}`, payload);
+  const { data } = await axios.put(`/resto/${id}`, payload);
   return data;
 }
 
 export async function deleteRestaurant(id: string | number) {
-  const { data } = await axios.delete(`/api/proxy/resto/${id}`);
+  const { data } = await axios.delete(`/resto/${id}`);
   return data;
 }
