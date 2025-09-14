@@ -2,10 +2,10 @@ import * as React from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import api from "@/services/api/axios";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "@/store";
 import { setAuth } from "@/features/auth/authSlice";
+import { register as registerApi } from "@/services/api/auth";
 
 const registerSchema = z
   .object({
@@ -46,10 +46,10 @@ export default function RegisterPage() {
       };
 
       try {
-        const res = await api.post("/api/proxy/auth/register", payload);
-        if (res?.data && res.data.success) {
-          const token = res.data.data?.token;
-          const user = res.data.data?.user;
+        const res = await registerApi(payload.name, payload.email, payload.password);
+        if (res?.data && (res.data.success || res.success)) {
+          const token = res.data?.data?.token || res?.data?.token || res?.token;
+          const user = res.data?.data?.user || res?.data?.user || res?.user;
           if (token && user) {
             dispatch(setAuth({ token, user }));
             alert("Registration successful");
@@ -63,6 +63,13 @@ export default function RegisterPage() {
           return;
         }
         // If server returned an unexpected success shape, fallback to notify
+        if (res && (res.token || res?.data?.token)) {
+          const token = res.token || res?.data?.token;
+          localStorage.setItem("auth_token", token);
+          alert("Registration successful");
+          navigate("/");
+          return;
+        }
         alert("Registration completed but unexpected server response.");
         navigate("/");
         return;
