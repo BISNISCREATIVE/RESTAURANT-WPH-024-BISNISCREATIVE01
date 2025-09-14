@@ -91,7 +91,7 @@ export default function RegisterPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-white">
-      <div className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 shadow-lg rounded-lg overflow-hidden relative min-h-[640px]">
+      <div className="max-w-6xl w-full grid grid-cols-1 md:[grid-template-columns:1fr_minmax(360px,480px)] shadow-lg rounded-lg overflow-hidden relative min-h-[640px]">
         <div className="hidden md:block h-full">
           <img
             src={
@@ -108,7 +108,7 @@ export default function RegisterPage() {
               <div className="text-2xl font-extrabold">Foody</div>
             </div>
             <h2 className="text-3xl font-extrabold mb-1">Welcome Back</h2>
-            <p className="text-sm text-slate-600 mb-6">Good to see you again! Let��s eat</p>
+            <p className="text-sm text-slate-600 mb-6">Good to see you again! Let’s eat</p>
 
             <div className="mb-6">
               <div className="relative bg-slate-100 rounded-full p-1 w-full max-w-[320px]">
