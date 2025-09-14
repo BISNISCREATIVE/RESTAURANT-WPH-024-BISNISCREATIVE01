@@ -67,17 +67,26 @@ export default function Navbar({
             <User className="h-5 w-5" />
           </Button>
           {authed ? (
-            <Button
-              variant="outline"
-              onClick={() => {
-                localStorage.removeItem("auth_token");
-                sessionStorage.removeItem("auth_token");
-                window.location.reload();
-              }}
-            >
-              {" "}
-              <LogOut className="h-4 w-4 mr-1" /> Logout
-            </Button>
+            <>
+              <button
+                onClick={() => setShowManage(true)}
+                className="hidden sm:inline-block rounded-full px-3 py-1 border bg-white/5 text-white"
+                title="Manage"
+              >
+                Manage
+              </button>
+              <Button
+                variant="outline"
+                onClick={() => {
+                  localStorage.removeItem("auth_token");
+                  sessionStorage.removeItem("auth_token");
+                  window.location.reload();
+                }}
+              >
+                {" "}
+                <LogOut className="h-4 w-4 mr-1" /> Logout
+              </Button>
+            </>
           ) : (
             (() => {
               const path = location.pathname || '';
