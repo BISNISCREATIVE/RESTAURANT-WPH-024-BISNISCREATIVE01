@@ -115,7 +115,6 @@ export default function Auth() {
             </form>
           </div>
         </main>
-        <Footer />
       </div>
     </div>
   );
