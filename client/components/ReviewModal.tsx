@@ -15,7 +15,7 @@ export default function ReviewModal({ restaurantId, onClose }: Props) {
 
   const mutation = useMutation({
     mutationFn: async (payload: { restaurantId: string | number; rating: number; comment: string }) => {
-      const res = await api.post("/api/proxy/review", payload);
+      const res = await api.post(`/review`, payload);
       return res.data;
     },
     onSuccess: () => {
