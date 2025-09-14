@@ -14,6 +14,7 @@ export default function RestaurantDetail() {
   const nav = useNavigate();
   const { data, isLoading } = useRestaurantDetailQuery(id);
   const [tab, setTab] = useState<"all" | "Food" | "Drink">("all");
+  const [showReview, setShowReview] = useState(false);
   const items = useAppSelector((s) => s.cart.items);
   const subtotal = useMemo(
     () => items.reduce((a, b) => a + b.price * b.qty, 0),
