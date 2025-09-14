@@ -33,7 +33,7 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-white">
-      <div className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 shadow-lg rounded-lg overflow-hidden relative min-h-[640px]">
+      <div className="max-w-6xl w-full grid grid-cols-1 md:[grid-template-columns:1fr_minmax(360px,480px)] shadow-lg rounded-lg overflow-hidden relative min-h-[640px]">
         <div className="hidden md:block h-full">
           <img
             src={
