@@ -104,7 +104,7 @@ export default function RegisterPage() {
         <div className="py-12 px-8 bg-white relative z-30 flex items-center md:w-[480px] md:flex-shrink-0">
           <div className="max-w-md mx-auto w-full sm:w-[420px] flex flex-col justify-center">
             <div className="flex items-center gap-3 mb-6">
-              <img src="/placeholder.svg" alt="logo" className="w-8 h-8" />
+              <img src="https://cdn.builder.io/api/v1/image/assets%2F54858901b0c442e6a38e6cc906052164%2Fbea3fb0257464385828d43cc8deb72cf?format=webp&width=120" alt="Foody logo" className="w-8 h-8" />
               <div className="text-2xl font-extrabold">Foody</div>
             </div>
             <h2 className="text-3xl font-extrabold mb-1">Welcome Back</h2>
