@@ -37,8 +37,9 @@ export default function Navbar({
   return (
     <header className={headerClass}>
       <div className="mx-auto max-w-6xl px-4 h-16 flex items-center gap-3">
-        <Link to="/" className="font-extrabold text-2xl tracking-tight">
-          Foody
+        <Link to="/" className="flex items-center gap-2">
+          <img src="https://cdn.builder.io/api/v1/image/assets%2F54858901b0c442e6a38e6cc906052164%2F462b12e4225140b88803a67447d747f3?format=webp&width=800" alt="Foody" className="w-8 h-8" />
+          <span className="font-extrabold text-2xl tracking-tight">Foody</span>
         </Link>
         <div className="hidden md:flex items-center gap-2 flex-1 max-w-xl mx-auto">
           <div className="relative w-full">
