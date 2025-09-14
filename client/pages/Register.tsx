@@ -91,14 +91,14 @@ export default function RegisterPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-white">
-      <div className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 shadow-lg rounded-lg overflow-hidden relative">
-        <div className="hidden md:block relative">
+      <div className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 shadow-lg rounded-lg overflow-hidden relative min-h-[640px]">
+        <div className="hidden md:block h-full">
           <img
             src={
               "https://cdn.builder.io/api/v1/image/assets%2F54858901b0c442e6a38e6cc906052164%2Fc46cd16354934da7b037e58e77087ea3?format=webp&width=1200"
             }
             alt="Delicious burger"
-            className="w-full h-full object-cover min-h-screen"
+            className="w-full h-full object-cover"
           />
         </div>
         <div className="py-12 px-8 bg-white relative z-30 flex items-center">
@@ -108,7 +108,7 @@ export default function RegisterPage() {
               <div className="text-2xl font-extrabold">Foody</div>
             </div>
             <h2 className="text-3xl font-extrabold mb-1">Welcome Back</h2>
-            <p className="text-sm text-slate-600 mb-6">Good to see you again! Let’s eat</p>
+            <p className="text-sm text-slate-600 mb-6">Good to see you again! Let��s eat</p>
 
             <div className="mb-6">
               <div className="relative bg-slate-100 rounded-full p-1 w-full max-w-[320px]">
