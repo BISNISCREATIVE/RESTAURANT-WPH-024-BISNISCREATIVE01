@@ -1,9 +1,9 @@
 import * as React from "react";
 import { useForm } from "react-hook-form";
-import api from "@/services/api/axios";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "@/store";
 import { setAuth } from "@/features/auth/authSlice";
+import { login } from "@/services/api/auth";
 
 type Form = { email: string; password: string; remember?: boolean };
 
@@ -15,18 +15,14 @@ export default function LoginPage() {
 
   const onSubmit = async (values: Form) => {
     try {
-      const res = await api.post("/api/proxy/auth/login", {
-        email: values.email,
-        password: values.password,
-      });
-      if (res?.data?.success) {
-        const token = res.data.data?.token;
-        const user = res.data.data?.user;
-        if (token && user) {
-          dispatch(setAuth({ token, user }));
-          navigate("/");
-          return;
-        }
+      const data = await login(values.email, values.password);
+      const token = data?.data?.token || data?.token;
+      const user = data?.data?.user || data?.user;
+      if (token) {
+        if (user) dispatch(setAuth({ token, user }));
+        localStorage.setItem("auth_token", token);
+        navigate("/");
+        return;
       }
       alert("Login failed: Invalid credentials or unexpected response");
     } catch (err: any) {
