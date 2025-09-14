@@ -77,20 +77,27 @@ export default function Navbar({
               <LogOut className="h-4 w-4 mr-1" /> Logout
             </Button>
           ) : (
-            <div className="flex items-center gap-2">
-              <button
-                onClick={() => nav("/auth")}
-                className={`hidden sm:inline-block rounded-full px-4 py-1 border ${isScrolled ? "bg-white text-slate-900" : "bg-white/10 text-white"}`}
-              >
-                Sign In
-              </button>
-              <button
-                onClick={() => nav("/register")}
-                className={`rounded-full px-4 py-1 ${isScrolled ? "bg-firebrick text-white" : "bg-white text-slate-900"}`}
-              >
-                Sign Up
-              </button>
-            </div>
+            (() => {
+              const loc = useLocation();
+              const path = loc.pathname || '';
+              const showHeaderAuth = !path.startsWith('/auth') && !path.startsWith('/register');
+              return showHeaderAuth ? (
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => nav('/auth')}
+                    className={`hidden sm:inline-block rounded-full px-4 py-1 border ${isScrolled ? 'bg-white text-slate-900' : 'bg-white/10 text-white'}`}
+                  >
+                    Sign In
+                  </button>
+                  <button
+                    onClick={() => nav('/register')}
+                    className={`rounded-full px-4 py-1 ${isScrolled ? 'bg-firebrick text-white' : 'bg-white text-slate-900'}`}
+                  >
+                    Sign Up
+                  </button>
+                </div>
+              ) : null;
+            })()
           )}
           <Button onClick={onOpenCart} className="relative rounded-full">
             <ShoppingCart className="h-5 w-5" />
