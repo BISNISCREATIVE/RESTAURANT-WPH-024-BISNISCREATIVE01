@@ -55,8 +55,7 @@ export default function Auth() {
           className="h-full w-full object-cover"
         />
       </div>
-      <div className="flex flex-col">
-        <Navbar onOpenCart={() => {}} />
+      <div className="flex flex-col min-h-screen">
         <main className="flex-1 flex items-center">
           <div className="w-full max-w-md mx-auto px-6">
             <div className="mb-6">
