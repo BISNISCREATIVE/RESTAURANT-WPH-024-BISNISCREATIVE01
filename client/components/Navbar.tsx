@@ -2,7 +2,7 @@ import { ShoppingCart, Search, User, LogIn, LogOut } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useAppSelector } from "@/store";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 export default function Navbar({
