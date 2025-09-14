@@ -24,7 +24,7 @@ export default function Footer() {
             <img src="https://cdn.builder.io/api/v1/image/assets%2F54858901b0c442e6a38e6cc906052164%2F9d251aae2446439e9ff1b3b5e158d2cb?format=webp&width=200" alt="linkedin" className="w-5 h-5" />
           </a>
           <a href="https://tiktok.com" target="_blank" rel="noreferrer" aria-label="TikTok" className="h-10 w-10 rounded-full border border-gray-700 grid place-items-center">
-            <img src="https://cdn.builder.io/api/v1/image/assets%2F54858901b0c442e6a38e6cc906052164%2F7cea849898e0474fa51d2a2c751ba270?format=webp&width=200" alt="tiktok" className="w-5 h-5" />
+              <img src="https://cdn.builder.io/api/v1/image/assets%2F54858901b0c442e6a38e6cc906052164%2F9d251aae2446439e9ff1b3b5e158d2cb?format=webp&width=200" alt="tiktok" className="w-5 h-5" />
           </a>
         </div>
         </div>
