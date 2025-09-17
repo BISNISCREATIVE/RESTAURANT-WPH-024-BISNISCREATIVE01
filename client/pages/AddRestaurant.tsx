@@ -18,9 +18,9 @@ export default function AddRestaurant() {
       const res = await fetch('/api/restaurants', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
       const json = await res.json();
       if (json.success) {
-        alert('Restaurant added');
+        toast({ title: 'Restaurant added', description: json.data?.name ?? 'Added' });
         nav('/');
-      } else alert('Failed');
+      } else toast({ title: 'Failed', description: 'Failed to add restaurant' });
     } catch (err) {
       alert('Failed');
     } finally { setLoading(false); }
