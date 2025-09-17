@@ -3,7 +3,8 @@ import axios from "./axios";
 // Use direct auth endpoints relative to API base URL
 export async function login(email: string, password: string) {
   const { data } = await axios.post(`/auth/login`, { email, password });
-  return data;
+  // normalize: return data.data if present
+  return data?.data ?? data;
 }
 
 export async function register(name: string, email: string, password: string) {
@@ -12,5 +13,5 @@ export async function register(name: string, email: string, password: string) {
     email,
     password,
   });
-  return data;
+  return data?.data ?? data;
 }
