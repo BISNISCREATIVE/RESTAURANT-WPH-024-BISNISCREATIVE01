@@ -89,9 +89,9 @@ export default function Index() {
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 mb-8">
             {[
               {
-                label: "All Restaurant",
+                label: "All Food",
                 icon: "https://cdn.builder.io/api/v1/image/assets%2Fcf8594e38e724fa3abfa91ad793c6168%2Ff3d234f40c0d4f8da8accf41a74b7d66?format=webp&width=200",
-                query: "",
+                query: "All Food",
               },
               {
                 label: "Nearby",
@@ -118,20 +118,23 @@ export default function Index() {
                 icon: "https://cdn.builder.io/api/v1/image/assets%2Fcf8594e38e724fa3abfa91ad793c6168%2Fc5bde48b0c644f1ab63e8a8b105117ee?format=webp&width=200",
                 query: "Lunch",
               },
-            ].map((c) => (
-              <button
-                key={c.label}
-                onClick={() => nav(`/?q=${encodeURIComponent(c.query)}`)}
-                className="rounded-2xl bg-white shadow-sm hover:shadow-md transition p-2 flex flex-col items-center gap-1"
-              >
-                <img
-                  src={c.icon}
-                  alt={c.label}
-                  className="h-20 object-contain"
-                />
-                <b className="text-gray-700 text-sm">{c.label}</b>
-              </button>
-            ))}
+            ].map((c) => {
+              const active = (q || "").toLowerCase() === (c.query || "").toLowerCase();
+              return (
+                <button
+                  key={c.label}
+                  onClick={() => nav(`/?q=${encodeURIComponent(c.query)}`)}
+                  className={`rounded-2xl bg-white shadow-sm hover:shadow-md transition p-2 flex flex-col items-center gap-1 ${active ? "ring-2 ring-red-500" : ""}`}
+                >
+                  <img
+                    src={c.icon}
+                    alt={c.label}
+                    className="h-20 object-contain"
+                  />
+                  <b className="text-gray-700 text-sm">{c.label}</b>
+                </button>
+              );
+            })}
           </div>
         </div>
 
