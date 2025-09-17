@@ -18,6 +18,13 @@ import RestaurantDetail from "./pages/RestaurantDetail";
 import Profile from "./pages/Profile";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import HowToOrder from "./pages/HowToOrder";
+import PaymentMethods from "./pages/PaymentMethods";
+import TrackOrder from "./pages/TrackOrder";
+import FAQ from "./pages/FAQ";
+import Contact from "./pages/Contact";
+import AddRestaurant from "./pages/AddRestaurant";
+import AddMenu from "./pages/AddMenu";
 import { Provider } from "react-redux";
 import { store } from "@/store";
 
