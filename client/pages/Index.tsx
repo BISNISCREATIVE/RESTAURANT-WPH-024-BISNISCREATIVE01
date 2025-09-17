@@ -21,7 +21,21 @@ export default function Index() {
   }, [location.search]);
 
   const { data, isLoading } = useRecommendedQuery();
-  const { items, loading: loadingMore, hasMore, loadMore } = useRecommendedInfinite(12);
+  const { items, loading: loadingMore, hasMore, loadMore } = useRecommendedInfinite(12, q);
+
+  // auto load when scrolling near bottom
+  const sentinelRef = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    const el = sentinelRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && hasMore && !loadingMore) loadMore();
+      });
+    }, { root: null, rootMargin: "200px" });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [sentinelRef.current, hasMore, loadingMore, loadMore]);
 
   return (
     <div className="min-h-screen flex flex-col">
