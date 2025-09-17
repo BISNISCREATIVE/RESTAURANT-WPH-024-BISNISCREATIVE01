@@ -18,15 +18,14 @@ export default function Checkout() {
   const dispatch = useAppDispatch();
   const nav = useNavigate();
 
-  function saveOrder(e: React.FormEvent<HTMLFormElement>) {
+  async function saveOrder(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = new FormData(e.currentTarget);
     const customerName = String(form.get("name") || "");
     const phone = String(form.get("phone") || "");
     const address = String(form.get("address") || "");
 
-    const order: Order = {
-      id: crypto.randomUUID(),
+    const order: any = {
       items,
       total,
       customerName,
@@ -34,11 +33,20 @@ export default function Checkout() {
       address,
       createdAt: dayjs().toISOString(),
     };
-    const prev = JSON.parse(localStorage.getItem("orders") || "[]");
-    prev.unshift(order);
-    localStorage.setItem("orders", JSON.stringify(prev));
-    dispatch(clearCart());
-    nav("/success");
+
+    try {
+      const { placeOrder } = await import("@/services/api/orders");
+      const res = await placeOrder(order);
+      dispatch(clearCart());
+      // store local copy too for compatibility
+      const prev = JSON.parse(localStorage.getItem("orders") || "[]");
+      prev.unshift(res);
+      localStorage.setItem("orders", JSON.stringify(prev));
+      nav("/success");
+    } catch (err) {
+      console.error(err);
+      alert("Failed to place order. Please try again.");
+    }
   }
 
   return (
