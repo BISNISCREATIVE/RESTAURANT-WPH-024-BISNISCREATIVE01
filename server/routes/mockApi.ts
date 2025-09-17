@@ -136,8 +136,31 @@ export const handleMockApi: RequestHandler = (req, res) => {
       });
     }
     const start = (page - 1) * limit;
-    const paged = big.slice(start, start + limit);
-    return res.json({ success: true, message: "Success", data: { restaurants: paged, pagination: { page, limit, total: big.length, totalPages: Math.ceil(big.length / limit) } } });
+    // apply simple q filters
+    const q = String(req.query.q || "").toLowerCase().trim();
+    let filtered = big;
+    if (q) {
+      if (q === "all food" || q === "all restaurant" || q === "all") {
+        filtered = big;
+      } else if (q === "nearby" || q === "near me") {
+        // simulate nearby by place matching 'Depok' or 'Jakarta'
+        filtered = big.filter((b) => String(b.place || "").toLowerCase().includes("depok") || String(b.place || "").toLowerCase().includes("jakarta"));
+      } else if (q === "discount") {
+        filtered = big.filter((b) => b.discount);
+      } else if (q === "best seller" || q === "bestseller") {
+        filtered = big.filter((b) => b.bestSeller);
+      } else if (q === "delivery") {
+        filtered = big.filter((b) => b.delivery);
+      } else if (q === "lunch") {
+        filtered = big.filter((b) => b.lunch);
+      } else {
+        // generic search by name/place
+        filtered = big.filter((b) => (b.name || "").toLowerCase().includes(q) || (b.place || "").toLowerCase().includes(q));
+      }
+    }
+
+    const paged = filtered.slice(start, start + limit);
+    return res.json({ success: true, message: "Success", data: { restaurants: paged, pagination: { page, limit, total: filtered.length, totalPages: Math.ceil(filtered.length / limit) } } });
   }
 
   // recommended
