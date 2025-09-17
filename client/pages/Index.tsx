@@ -137,15 +137,29 @@ export default function Index() {
           )}
           {!isLoading && (
             <>
-              {data && data.length > 0 ? (
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              {/* primary recommended items from /resto/recommended */}
+              {data && data.length > 0 && (
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-6">
                   {data.map((item) => (
                     <div key={String(item.id)} className="cursor-pointer" onClick={() => nav(`/resto/${item.restaurantId}`)}>
                       <ProductCard item={item} />
                     </div>
                   ))}
                 </div>
-              ) : (
+              )}
+
+              {/* infinite list from /resto (paginated) */}
+              {items && items.length > 0 && (
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                  {items.map((item) => (
+                    <div key={String(item.id)} className="cursor-pointer" onClick={() => nav(`/resto/${item.restaurantId}`)}>
+                      <ProductCard item={item} />
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {!((data && data.length) || (items && items.length)) && (
                 <div className="py-12 text-center text-muted-foreground">
                   <img src="/placeholder.svg" alt="No recommendations" className="mx-auto h-40 w-40 object-contain mb-6" />
                   <div className="text-lg font-medium mb-2">No recommendations yet</div>
