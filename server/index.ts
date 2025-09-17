@@ -19,5 +19,10 @@ export function createServer() {
 
   app.get("/api/demo", handleDemo);
 
+  // Mount mock API under /api
+  // Note: mock routes implement endpoints like /api/auth/register, /api/resto, /api/resto/recommended, /api/orders, etc.
+  const { handleMockApi } = require("./routes/mockApi");
+  app.use("/api", handleMockApi);
+
   return app;
 }
