@@ -35,6 +35,7 @@ export default function ProductCard({
         restaurantId: item.restaurantId,
       }),
     );
+    toast({ title: "Added to cart", description: `${item.name} was added to your cart` });
     if (localStorage.getItem("auth_token"))
       add.mutate({ menuId: item.id, quantity: 1 });
   }
