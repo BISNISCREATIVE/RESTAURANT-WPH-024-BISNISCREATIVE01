@@ -10,7 +10,7 @@ export function useRestaurantsQuery(params?: {
   return useQuery({
     queryKey: ["restaurants", params],
     queryFn: async () => {
-      const res = await axios.get("/restaurants", { params });
+      const res = await axios.get("/resto", { params });
       const payload = res.data?.data?.restaurants ?? res.data?.data ?? res.data;
       const list: Restaurant[] = (Array.isArray(payload) ? payload : []).map(
         (r: any) => ({
