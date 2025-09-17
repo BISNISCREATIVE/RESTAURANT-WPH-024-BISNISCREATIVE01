@@ -134,13 +134,27 @@ export default function Index() {
             </div>
           )}
           {!isLoading && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {data?.map((item) => (
-                <div key={String(item.id)} className="cursor-pointer" onClick={() => nav(`/resto/${item.restaurantId}`)}>
-                  <ProductCard item={item} />
+            <>
+              {data && data.length > 0 ? (
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                  {data.map((item) => (
+                    <div key={String(item.id)} className="cursor-pointer" onClick={() => nav(`/resto/${item.restaurantId}`)}>
+                      <ProductCard item={item} />
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
+              ) : (
+                <div className="py-12 text-center text-muted-foreground">
+                  <img src="/placeholder.svg" alt="No recommendations" className="mx-auto h-40 w-40 object-contain mb-6" />
+                  <div className="text-lg font-medium mb-2">No recommendations yet</div>
+                  <div className="max-w-xl mx-auto mb-4">We couldn't find recommended items right now. Try browsing restaurants instead.</div>
+                  <div className="flex justify-center gap-2">
+                    <Button onClick={() => nav('/')}>Browse Restaurants</Button>
+                    <Button variant="outline" onClick={() => window.location.reload()}>Refresh</Button>
+                  </div>
+                </div>
+              )}
+            </>
           )}
           <div className="text-center mt-8">
             <Button

@@ -53,11 +53,15 @@ export default function ProductCard({
     <div className="bg-white rounded-xl shadow-sm overflow-hidden">
       <img
         src={item.image || "/placeholder.svg"}
+        onError={(e) => { (e.target as HTMLImageElement).src = "/placeholder.svg"; }}
         alt={item.name}
         className="h-36 w-full object-cover"
       />
       <div className="p-3 space-y-1">
         <div className="font-medium line-clamp-1">{item.name}</div>
+        {item.restaurantName && (
+          <div className="text-sm text-muted-foreground line-clamp-1">{item.restaurantName}</div>
+        )}
         <div className="text-sm text-muted-foreground">
           {formatCurrency(item.price)}
         </div>
