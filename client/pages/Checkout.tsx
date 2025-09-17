@@ -38,7 +38,7 @@ export default function Checkout() {
     prev.unshift(order);
     localStorage.setItem("orders", JSON.stringify(prev));
     dispatch(clearCart());
-    nav("/orders");
+    nav("/success");
   }
 
   return (
