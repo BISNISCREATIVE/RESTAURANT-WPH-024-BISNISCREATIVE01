@@ -18,7 +18,12 @@ export default function Category() {
               <h3 className="font-bold mb-3">Filter</h3>
               <div className="mb-3">
                 <label className="block text-sm font-medium mb-1">Search</label>
-                <input value={q} onChange={(e) => setQ(e.target.value)} className="w-full rounded border p-2" placeholder="Search restaurants" />
+                <input
+                  value={q}
+                  onChange={(e) => setQ(e.target.value)}
+                  className="w-full rounded border p-2"
+                  placeholder="Search restaurants"
+                />
               </div>
             </div>
           </aside>
@@ -31,15 +36,29 @@ export default function Category() {
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {isLoading && <div>Loading...</div>}
               {(!restaurants || restaurants.length === 0) && !isLoading && (
-                <div className="text-muted-foreground">No restaurants found.</div>
+                <div className="text-muted-foreground">
+                  No restaurants found.
+                </div>
               )}
               {restaurants.map((r: any) => (
-                <Link key={r.id} to={`/resto/${r.id}`} className="block bg-white rounded-xl shadow p-4 flex items-center gap-4">
-                  <img src={r.logo || r.images?.[0] || '/placeholder.svg'} alt={r.name} className="w-20 h-20 rounded-xl object-cover" />
+                <Link
+                  key={r.id}
+                  to={`/resto/${r.id}`}
+                  className="block bg-white rounded-xl shadow p-4 flex items-center gap-4"
+                >
+                  <img
+                    src={r.logo || r.images?.[0] || "/placeholder.svg"}
+                    alt={r.name}
+                    className="w-20 h-20 rounded-xl object-cover"
+                  />
                   <div className="flex-1">
                     <div className="font-extrabold">{r.name}</div>
-                    <div className="text-sm text-muted-foreground">{r.city || r.place || '-'}</div>
-                    <div className="text-sm text-yellow-500">★ {r.rating ?? '-'}</div>
+                    <div className="text-sm text-muted-foreground">
+                      {r.city || r.place || "-"}
+                    </div>
+                    <div className="text-sm text-yellow-500">
+                      ★ {r.rating ?? "-"}
+                    </div>
                   </div>
                 </Link>
               ))}

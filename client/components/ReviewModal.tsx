@@ -19,17 +19,32 @@ export default function ReviewModal({ restaurantId, onClose }: Props) {
       rating: number;
       comment: string;
     }) => {
-      const res = await api.post(`/restaurants/${payload.restaurantId}/reviews`, payload);
+      const res = await api.post(
+        `/restaurants/${payload.restaurantId}/reviews`,
+        payload,
+      );
       return res.data;
     },
     onSuccess: () => {
       qc.invalidateQueries(["restaurant", String(restaurantId)]);
       onClose();
-      try { const { toast } = require("@/hooks/use-toast"); toast({ title: "Thank you!", description: "Your review was submitted." }); } catch (e) { }
+      try {
+        const { toast } = require("@/hooks/use-toast");
+        toast({
+          title: "Thank you!",
+          description: "Your review was submitted.",
+        });
+      } catch (e) {}
     },
     onError: (err: any) => {
       console.error(err);
-      try { const { toast } = require("@/hooks/use-toast"); toast({ title: "Failed", description: "Failed to submit review. Please try again later." }); } catch (e) { }
+      try {
+        const { toast } = require("@/hooks/use-toast");
+        toast({
+          title: "Failed",
+          description: "Failed to submit review. Please try again later.",
+        });
+      } catch (e) {}
     },
   });
 

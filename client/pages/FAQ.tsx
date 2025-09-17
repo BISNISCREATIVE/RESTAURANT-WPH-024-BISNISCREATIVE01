@@ -27,7 +27,9 @@ export default function FAQ() {
                 <div className="text-muted-foreground">{f.a}</div>
               </div>
             ))}
-            {faqs.length === 0 && <div className="text-muted-foreground">No FAQ available.</div>}
+            {faqs.length === 0 && (
+              <div className="text-muted-foreground">No FAQ available.</div>
+            )}
           </div>
         </div>
       </main>

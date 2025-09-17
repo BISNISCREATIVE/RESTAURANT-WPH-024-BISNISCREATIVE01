@@ -21,18 +21,26 @@ export default function Index() {
   }, [location.search]);
 
   const { data, isLoading } = useRecommendedQuery();
-  const { items, loading: loadingMore, hasMore, loadMore } = useRecommendedInfinite(12, q);
+  const {
+    items,
+    loading: loadingMore,
+    hasMore,
+    loadMore,
+  } = useRecommendedInfinite(12, q);
 
   // auto load when scrolling near bottom
   const sentinelRef = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
     const el = sentinelRef.current;
     if (!el) return;
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting && hasMore && !loadingMore) loadMore();
-      });
-    }, { root: null, rootMargin: "200px" });
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && hasMore && !loadingMore) loadMore();
+        });
+      },
+      { root: null, rootMargin: "200px" },
+    );
     io.observe(el);
     return () => io.disconnect();
   }, [sentinelRef.current, hasMore, loadingMore, loadMore]);
@@ -119,7 +127,8 @@ export default function Index() {
                 query: "Lunch",
               },
             ].map((c) => {
-              const active = (q || "").toLowerCase() === (c.query || "").toLowerCase();
+              const active =
+                (q || "").toLowerCase() === (c.query || "").toLowerCase();
               return (
                 <button
                   key={c.label}
@@ -158,7 +167,11 @@ export default function Index() {
               {data && data.length > 0 && (
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-6">
                   {data.map((item) => (
-                    <div key={String(item.id)} className="cursor-pointer" onClick={() => nav(`/resto/${item.restaurantId}`)}>
+                    <div
+                      key={String(item.id)}
+                      className="cursor-pointer"
+                      onClick={() => nav(`/resto/${item.restaurantId}`)}
+                    >
                       <ProductCard item={item} />
                     </div>
                   ))}
@@ -169,7 +182,11 @@ export default function Index() {
               {items && items.length > 0 && (
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                   {items.map((item) => (
-                    <div key={String(item.id)} className="cursor-pointer" onClick={() => nav(`/resto/${item.restaurantId}`)}>
+                    <div
+                      key={String(item.id)}
+                      className="cursor-pointer"
+                      onClick={() => nav(`/resto/${item.restaurantId}`)}
+                    >
                       <ProductCard item={item} />
                     </div>
                   ))}
@@ -178,12 +195,26 @@ export default function Index() {
 
               {!((data && data.length) || (items && items.length)) && (
                 <div className="py-12 text-center text-muted-foreground">
-                  <img src="/placeholder.svg" alt="No recommendations" className="mx-auto h-40 w-40 object-contain mb-6" />
-                  <div className="text-lg font-medium mb-2">No recommendations yet</div>
-                  <div className="max-w-xl mx-auto mb-4">We couldn't find recommended items right now. Try browsing restaurants instead.</div>
+                  <img
+                    src="/placeholder.svg"
+                    alt="No recommendations"
+                    className="mx-auto h-40 w-40 object-contain mb-6"
+                  />
+                  <div className="text-lg font-medium mb-2">
+                    No recommendations yet
+                  </div>
+                  <div className="max-w-xl mx-auto mb-4">
+                    We couldn't find recommended items right now. Try browsing
+                    restaurants instead.
+                  </div>
                   <div className="flex justify-center gap-2">
-                    <Button onClick={() => nav('/')}>Browse Restaurants</Button>
-                    <Button variant="outline" onClick={() => window.location.reload()}>Refresh</Button>
+                    <Button onClick={() => nav("/")}>Browse Restaurants</Button>
+                    <Button
+                      variant="outline"
+                      onClick={() => window.location.reload()}
+                    >
+                      Refresh
+                    </Button>
                   </div>
                 </div>
               )}

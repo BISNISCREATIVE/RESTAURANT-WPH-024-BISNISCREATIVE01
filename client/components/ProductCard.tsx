@@ -35,7 +35,10 @@ export default function ProductCard({
         restaurantId: item.restaurantId,
       }),
     );
-    toast({ title: "Added to cart", description: `${item.name} was added to your cart` });
+    toast({
+      title: "Added to cart",
+      description: `${item.name} was added to your cart`,
+    });
     if (localStorage.getItem("auth_token"))
       add.mutate({ menuId: item.id, quantity: 1 });
   }
@@ -55,14 +58,18 @@ export default function ProductCard({
     <div className="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-150">
       <img
         src={item.image || "/placeholder.svg"}
-        onError={(e) => { (e.target as HTMLImageElement).src = "/placeholder.svg"; }}
+        onError={(e) => {
+          (e.target as HTMLImageElement).src = "/placeholder.svg";
+        }}
         alt={item.name}
         className="h-36 w-full object-cover"
       />
       <div className="p-3 space-y-1">
         <div className="font-medium line-clamp-1">{item.name}</div>
         {item.restaurantName && (
-          <div className="text-sm text-muted-foreground line-clamp-1">{item.restaurantName}</div>
+          <div className="text-sm text-muted-foreground line-clamp-1">
+            {item.restaurantName}
+          </div>
         )}
         <div className="text-sm text-muted-foreground">
           {formatCurrency(item.price)}

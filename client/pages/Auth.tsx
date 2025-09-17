@@ -30,7 +30,10 @@ export default function Auth() {
         );
         const storage = remember ? localStorage : sessionStorage;
         storage.setItem("auth_token", data.token);
-        toast({ title: "Signed in", description: `Welcome back, ${data.user?.name ?? data.user?.email ?? "user"}` });
+        toast({
+          title: "Signed in",
+          description: `Welcome back, ${data.user?.name ?? data.user?.email ?? "user"}`,
+        });
       } else {
         const data = await register(
           String(fd.get("name")),
@@ -39,7 +42,10 @@ export default function Auth() {
         );
         const storage = remember ? localStorage : sessionStorage;
         storage.setItem("auth_token", data.token);
-        toast({ title: "Account created", description: `Welcome, ${data.user?.name ?? "user"}` });
+        toast({
+          title: "Account created",
+          description: `Welcome, ${data.user?.name ?? "user"}`,
+        });
       }
       window.location.href = "/";
     } catch (err: any) {

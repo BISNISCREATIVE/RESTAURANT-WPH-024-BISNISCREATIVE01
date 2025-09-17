@@ -24,9 +24,15 @@ export default function PaymentMethods() {
           <h1 className="text-2xl font-bold mb-4">Payment Methods</h1>
           <div className="grid gap-3">
             {methods.map((m) => (
-              <div key={m.id} className="p-4 border rounded-lg">{m.name}</div>
+              <div key={m.id} className="p-4 border rounded-lg">
+                {m.name}
+              </div>
             ))}
-            {methods.length === 0 && <div className="text-muted-foreground">No payment methods available.</div>}
+            {methods.length === 0 && (
+              <div className="text-muted-foreground">
+                No payment methods available.
+              </div>
+            )}
           </div>
         </div>
       </main>

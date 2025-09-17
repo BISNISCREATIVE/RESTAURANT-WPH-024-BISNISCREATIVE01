@@ -6,8 +6,12 @@ import { useState, useEffect } from "react";
 import ReviewModal from "@/components/ReviewModal";
 
 export default function Orders() {
-  const [showReviewFor, setShowReviewFor] = useState<number | string | null>(null);
-  const [orders, setOrders] = useState<any[]>(() => JSON.parse(localStorage.getItem("orders") || "[]"));
+  const [showReviewFor, setShowReviewFor] = useState<number | string | null>(
+    null,
+  );
+  const [orders, setOrders] = useState<any[]>(() =>
+    JSON.parse(localStorage.getItem("orders") || "[]"),
+  );
 
   // try to fetch from API when available
   useEffect(() => {
@@ -21,7 +25,9 @@ export default function Orders() {
         // ignore
       }
     })();
-    return () => { mounted = false };
+    return () => {
+      mounted = false;
+    };
   }, []);
   return (
     <div className="min-h-screen flex flex-col">

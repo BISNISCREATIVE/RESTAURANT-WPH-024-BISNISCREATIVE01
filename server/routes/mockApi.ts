@@ -63,7 +63,9 @@ function seed() {
       star: 5,
       place: "Jakarta Selatan",
       logo: null,
-      images: ["https://foodish-api.com/images/dessert/cheesecake/cheesecake7.jpg"],
+      images: [
+        "https://foodish-api.com/images/dessert/cheesecake/cheesecake7.jpg",
+      ],
       reviewCount: 2,
       menuCount: 5,
       discount: false,
@@ -83,7 +85,9 @@ function seed() {
         id: Number(String(r.id) + String(i)),
         restaurantId: r.id,
         foodName: `${r.name} Item ${i}`,
-        price: r.priceRange?.min ? r.priceRange.min + i * 1000 : 25000 + i * 1000,
+        price: r.priceRange?.min
+          ? r.priceRange.min + i * 1000
+          : 25000 + i * 1000,
         type: "Main",
         image: r.images && r.images[0] ? r.images[0] : null,
       });
@@ -99,27 +103,77 @@ export const handleMockApi: RequestHandler = (req, res) => {
   // AUTH
   if (req.path === "/auth/register" && req.method === "POST") {
     const { name, email, phone, password } = req.body;
-    if (!email || !password) return res.status(400).json({ success: false, message: "email and password required" });
-    if (users.find((u) => u.email === email)) return res.status(400).json({ success: false, message: "User exists" });
+    if (!email || !password)
+      return res
+        .status(400)
+        .json({ success: false, message: "email and password required" });
+    if (users.find((u) => u.email === email))
+      return res.status(400).json({ success: false, message: "User exists" });
     const id = users.length + 1;
     const token = `token-${id}`;
-    const user = { id, name, email, phone, password, token, createdAt: new Date().toISOString() };
+    const user = {
+      id,
+      name,
+      email,
+      phone,
+      password,
+      token,
+      createdAt: new Date().toISOString(),
+    };
     users.push(user);
-    return res.json({ success: true, message: "Registered", data: { user: { id: user.id, name: user.name, email: user.email, phone: user.phone, createdAt: user.createdAt }, token } });
+    return res.json({
+      success: true,
+      message: "Registered",
+      data: {
+        user: {
+          id: user.id,
+          name: user.name,
+          email: user.email,
+          phone: user.phone,
+          createdAt: user.createdAt,
+        },
+        token,
+      },
+    });
   }
 
   if (req.path === "/auth/login" && req.method === "POST") {
     const { email, password } = req.body;
-    const user = users.find((u) => u.email === email && u.password === password);
-    if (!user) return res.status(401).json({ success: false, message: "Invalid credentials" });
-    return res.json({ success: true, message: "OK", data: { user: { id: user.id, name: user.name, email: user.email }, token: user.token } });
+    const user = users.find(
+      (u) => u.email === email && u.password === password,
+    );
+    if (!user)
+      return res
+        .status(401)
+        .json({ success: false, message: "Invalid credentials" });
+    return res.json({
+      success: true,
+      message: "OK",
+      data: {
+        user: { id: user.id, name: user.name, email: user.email },
+        token: user.token,
+      },
+    });
   }
 
   if (req.path === "/auth/profile" && req.method === "GET") {
     const auth = (req.headers.authorization || "").replace("Bearer ", "");
     const user = users.find((u) => u.token === auth);
-    if (!user) return res.status(401).json({ success: false, message: "Access token required" });
-    return res.json({ success: true, message: "OK", data: { id: user.id, name: user.name, email: user.email, phone: user.phone, createdAt: user.createdAt } });
+    if (!user)
+      return res
+        .status(401)
+        .json({ success: false, message: "Access token required" });
+    return res.json({
+      success: true,
+      message: "OK",
+      data: {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        phone: user.phone,
+        createdAt: user.createdAt,
+      },
+    });
   }
 
   // RESTAURANTS list with pagination
@@ -137,14 +191,24 @@ export const handleMockApi: RequestHandler = (req, res) => {
     }
     const start = (page - 1) * limit;
     // apply simple q filters
-    const q = String(req.query.q || "").toLowerCase().trim();
+    const q = String(req.query.q || "")
+      .toLowerCase()
+      .trim();
     let filtered = big;
     if (q) {
       if (q === "all food" || q === "all restaurant" || q === "all") {
         filtered = big;
       } else if (q === "nearby" || q === "near me") {
         // simulate nearby by place matching 'Depok' or 'Jakarta'
-        filtered = big.filter((b) => String(b.place || "").toLowerCase().includes("depok") || String(b.place || "").toLowerCase().includes("jakarta"));
+        filtered = big.filter(
+          (b) =>
+            String(b.place || "")
+              .toLowerCase()
+              .includes("depok") ||
+            String(b.place || "")
+              .toLowerCase()
+              .includes("jakarta"),
+        );
       } else if (q === "discount") {
         filtered = big.filter((b) => b.discount);
       } else if (q === "best seller" || q === "bestseller") {
@@ -155,12 +219,28 @@ export const handleMockApi: RequestHandler = (req, res) => {
         filtered = big.filter((b) => b.lunch);
       } else {
         // generic search by name/place
-        filtered = big.filter((b) => (b.name || "").toLowerCase().includes(q) || (b.place || "").toLowerCase().includes(q));
+        filtered = big.filter(
+          (b) =>
+            (b.name || "").toLowerCase().includes(q) ||
+            (b.place || "").toLowerCase().includes(q),
+        );
       }
     }
 
     const paged = filtered.slice(start, start + limit);
-    return res.json({ success: true, message: "Success", data: { restaurants: paged, pagination: { page, limit, total: filtered.length, totalPages: Math.ceil(filtered.length / limit) } } });
+    return res.json({
+      success: true,
+      message: "Success",
+      data: {
+        restaurants: paged,
+        pagination: {
+          page,
+          limit,
+          total: filtered.length,
+          totalPages: Math.ceil(filtered.length / limit),
+        },
+      },
+    });
   }
 
   // recommended
@@ -185,7 +265,10 @@ export const handleMockApi: RequestHandler = (req, res) => {
     const parts = req.path.split("/");
     const id = Number(parts[2]);
     const r = restaurants.find((x) => Number(x.id) === id);
-    if (!r) return res.status(404).json({ success: false, message: "Restaurant not found" });
+    if (!r)
+      return res
+        .status(404)
+        .json({ success: false, message: "Restaurant not found" });
     const m = menus.filter((mm) => mm.restaurantId === r.id);
     return res.json({ success: true, data: { ...r, menus: m, reviews: [] } });
   }
@@ -196,7 +279,13 @@ export const handleMockApi: RequestHandler = (req, res) => {
     const user = users.find((u) => u.token === auth) || null;
     const body = req.body || {};
     const id = orders.length + 1;
-    const order = { id, ...body, userId: user?.id ?? null, status: "placed", createdAt: new Date().toISOString() };
+    const order = {
+      id,
+      ...body,
+      userId: user?.id ?? null,
+      status: "placed",
+      createdAt: new Date().toISOString(),
+    };
     orders.push(order);
     return res.json({ success: true, message: "Order placed", data: order });
   }
@@ -213,7 +302,10 @@ export const handleMockApi: RequestHandler = (req, res) => {
   if (req.path.match(/^\/orders\/.+/) && req.method === "GET") {
     const id = Number(req.path.split("/")[2]);
     const o = orders.find((x) => x.id === id);
-    if (!o) return res.status(404).json({ success: false, message: "Order not found" });
+    if (!o)
+      return res
+        .status(404)
+        .json({ success: false, message: "Order not found" });
     return res.json({ success: true, data: o });
   }
 
@@ -221,7 +313,17 @@ export const handleMockApi: RequestHandler = (req, res) => {
   if (req.path === "/restaurants" && req.method === "POST") {
     const body = req.body || {};
     const id = restaurants.length + 1000;
-    const r = { id, name: body.name || "New Restaurant", images: body.images || [], logo: body.logo || null, place: body.place || null, star: 0, reviewCount: 0, menuCount: 0, priceRange: { min: 0, max: 0 } };
+    const r = {
+      id,
+      name: body.name || "New Restaurant",
+      images: body.images || [],
+      logo: body.logo || null,
+      place: body.place || null,
+      star: 0,
+      reviewCount: 0,
+      menuCount: 0,
+      priceRange: { min: 0, max: 0 },
+    };
     restaurants.push(r);
     return res.json({ success: true, data: r });
   }
@@ -232,7 +334,14 @@ export const handleMockApi: RequestHandler = (req, res) => {
     const rid = Number(parts[2]);
     const body = req.body || {};
     const id = menus.length + 100000;
-    const m = { id, restaurantId: rid, foodName: body.name || body.foodName || "Dish", price: body.price || 0, type: body.type || "Main", image: body.image || null };
+    const m = {
+      id,
+      restaurantId: rid,
+      foodName: body.name || body.foodName || "Dish",
+      price: body.price || 0,
+      type: body.type || "Main",
+      image: body.image || null,
+    };
     menus.push(m);
     return res.json({ success: true, data: m });
   }
@@ -252,9 +361,21 @@ export const handleMockApi: RequestHandler = (req, res) => {
   // FAQ
   if (req.path === "/faq" && req.method === "GET") {
     const faqs = [
-      { id: 1, q: "How do I place an order?", a: "Browse restaurants, add items to cart, then checkout." },
-      { id: 2, q: "What payment methods are available?", a: "Cash, bank transfers, credit card, and e-wallets." },
-      { id: 3, q: "How do I track my order?", a: "Go to Track Order and enter your order id." },
+      {
+        id: 1,
+        q: "How do I place an order?",
+        a: "Browse restaurants, add items to cart, then checkout.",
+      },
+      {
+        id: 2,
+        q: "What payment methods are available?",
+        a: "Cash, bank transfers, credit card, and e-wallets.",
+      },
+      {
+        id: 3,
+        q: "How do I track my order?",
+        a: "Go to Track Order and enter your order id.",
+      },
     ];
     return res.json({ success: true, data: faqs });
   }
@@ -263,31 +384,68 @@ export const handleMockApi: RequestHandler = (req, res) => {
   if (req.path === "/contact" && req.method === "POST") {
     const body = req.body || {};
     // echo back
-    return res.json({ success: true, message: "Thanks for contacting us", data: body });
+    return res.json({
+      success: true,
+      message: "Thanks for contacting us",
+      data: body,
+    });
   }
 
   // track order (alias)
   if (req.path.match(/^\/track\/.+/) && req.method === "GET") {
     const id = Number(req.path.split("/")[2]);
     const o = orders.find((x) => x.id === id);
-    if (!o) return res.status(404).json({ success: false, message: "Order not found" });
+    if (!o)
+      return res
+        .status(404)
+        .json({ success: false, message: "Order not found" });
     // simulate status timeline
     const timeline = [
       { status: "placed", time: o.createdAt },
-      { status: "accepted", time: new Date(new Date(o.createdAt).getTime() + 2 * 60 * 1000).toISOString() },
-      { status: "preparing", time: new Date(new Date(o.createdAt).getTime() + 10 * 60 * 1000).toISOString() },
-      { status: "out_for_delivery", time: new Date(new Date(o.createdAt).getTime() + 25 * 60 * 1000).toISOString() },
-      { status: "delivered", time: new Date(new Date(o.createdAt).getTime() + 40 * 60 * 1000).toISOString() },
+      {
+        status: "accepted",
+        time: new Date(
+          new Date(o.createdAt).getTime() + 2 * 60 * 1000,
+        ).toISOString(),
+      },
+      {
+        status: "preparing",
+        time: new Date(
+          new Date(o.createdAt).getTime() + 10 * 60 * 1000,
+        ).toISOString(),
+      },
+      {
+        status: "out_for_delivery",
+        time: new Date(
+          new Date(o.createdAt).getTime() + 25 * 60 * 1000,
+        ).toISOString(),
+      },
+      {
+        status: "delivered",
+        time: new Date(
+          new Date(o.createdAt).getTime() + 40 * 60 * 1000,
+        ).toISOString(),
+      },
     ];
     return res.json({ success: true, data: { order: o, timeline } });
   }
 
   // add review
-  if (req.path.match(/^\/restaurants\/\d+\/reviews$/) && req.method === "POST") {
+  if (
+    req.path.match(/^\/restaurants\/\d+\/reviews$/) &&
+    req.method === "POST"
+  ) {
     const parts = req.path.split("/");
     const rid = Number(parts[2]);
     const body = req.body || {};
-    const review = { id: Date.now(), restaurantId: rid, rating: body.rating || 5, comment: body.comment || "", user: body.user || null, createdAt: new Date().toISOString() };
+    const review = {
+      id: Date.now(),
+      restaurantId: rid,
+      rating: body.rating || 5,
+      comment: body.comment || "",
+      user: body.user || null,
+      createdAt: new Date().toISOString(),
+    };
     // not storing reviews separate for simplicity
     return res.json({ success: true, data: review });
   }
