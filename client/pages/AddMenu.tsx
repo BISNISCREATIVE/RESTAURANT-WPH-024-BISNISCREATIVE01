@@ -19,9 +19,9 @@ export default function AddMenu() {
       const res = await fetch(`/api/restaurants/${restaurantId}/menus`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
       const json = await res.json();
       if (json.success) {
-        alert('Menu added');
+        toast({ title: 'Menu added', description: json.data?.foodName ?? json.data?.name ?? 'Added' });
         nav(`/resto/${restaurantId}`);
-      } else alert('Failed');
+      } else toast({ title: 'Failed', description: 'Failed to add menu' });
     } catch (err) {
       alert('Failed');
     } finally { setLoading(false); }
