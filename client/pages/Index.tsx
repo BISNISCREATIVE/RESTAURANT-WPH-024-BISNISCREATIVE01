@@ -1,19 +1,15 @@
 import { useEffect, useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { useRestaurantsQuery } from "@/services/queries/resto";
 import CartDrawer from "@/components/CartDrawer";
-import RestaurantCard from "@/components/RestaurantCard";
+import ProductCard from "@/components/ProductCard";
 import { Button } from "@/components/ui/button";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useRecommendedQuery } from "@/services/queries/recommended";
 
 export default function Index() {
   const [q, setQ] = useState("");
   const [sort, setSort] = useState<string>("");
-  const params = { ...(q ? { q } : {}), ...(sort ? { sort } : {}) } as any;
-  const { data, isLoading } = useRestaurantsQuery(
-    Object.keys(params).length ? params : undefined,
-  );
   const nav = useNavigate();
   const location = useLocation();
 
@@ -22,6 +18,8 @@ export default function Index() {
     setQ(sp.get("q") || "");
     setSort(sp.get("sort") || "");
   }, [location.search]);
+
+  const { data, isLoading } = useRecommendedQuery();
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -137,12 +135,8 @@ export default function Index() {
           )}
           {!isLoading && (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {data?.map((r) => (
-                <RestaurantCard
-                  key={String(r.id)}
-                  data={r}
-                  onClick={() => nav(`/resto/${r.id}`)}
-                />
+              {data?.map((item) => (
+                <ProductCard key={String(item.id)} item={item} />
               ))}
             </div>
           )}
