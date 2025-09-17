@@ -104,19 +104,19 @@ export default function Footer() {
           <div className="font-semibold mb-3">Help</div>
           <ul className="space-y-2 text-sm text-gray-300">
             <li>
-              <a href="#">How to Order</a>
+              <Link to="/how-to-order">How to Order</Link>
             </li>
             <li>
-              <a href="#">Payment Methods</a>
+              <Link to="/payment-methods">Payment Methods</Link>
             </li>
             <li>
-              <a href="#">Track My Order</a>
+              <Link to="/track">Track My Order</Link>
             </li>
             <li>
-              <a href="#">FAQ</a>
+              <Link to="/faq">FAQ</Link>
             </li>
             <li>
-              <a href="#">Contact Us</a>
+              <Link to="/contact">Contact Us</Link>
             </li>
           </ul>
         </div>
