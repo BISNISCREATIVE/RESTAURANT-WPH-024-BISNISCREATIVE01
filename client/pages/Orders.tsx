@@ -2,11 +2,6 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import dayjs from "dayjs";
 import { formatCurrency } from "@/lib/format";
-
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import dayjs from "dayjs";
-import { formatCurrency } from "@/lib/format";
 import { useState } from "react";
 import ReviewModal from "@/components/ReviewModal";
 
