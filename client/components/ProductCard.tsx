@@ -52,7 +52,7 @@ export default function ProductCard({
   }
 
   return (
-    <div className="bg-white rounded-xl shadow-sm overflow-hidden">
+    <div className="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-150">
       <img
         src={item.image || "/placeholder.svg"}
         onError={(e) => { (e.target as HTMLImageElement).src = "/placeholder.svg"; }}
