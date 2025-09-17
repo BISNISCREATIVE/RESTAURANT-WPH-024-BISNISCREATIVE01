@@ -19,7 +19,7 @@ export default function ReviewModal({ restaurantId, onClose }: Props) {
       rating: number;
       comment: string;
     }) => {
-      const res = await api.post(`/review`, payload);
+      const res = await api.post(`/restaurants/${payload.restaurantId}/reviews`, payload);
       return res.data;
     },
     onSuccess: () => {
