@@ -36,7 +36,7 @@ export function useRestaurantDetailQuery(id?: string | number) {
     enabled: !!id,
     queryKey: ["restaurant", id],
     queryFn: async () => {
-      const res = await axios.get(`/restaurants/${id}`);
+      const res = await axios.get(`/resto/${id}`);
       const d = res.data?.data ?? res.data;
       const normalizedMenus: MenuItem[] = (d?.menus ?? []).map((m: any) => ({
         id: m.id,
