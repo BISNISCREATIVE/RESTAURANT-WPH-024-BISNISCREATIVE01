@@ -21,6 +21,10 @@ function seed() {
       ],
       reviewCount: 1,
       menuCount: 4,
+      discount: true,
+      bestSeller: false,
+      delivery: true,
+      lunch: false,
       priceRange: { min: 27000, max: 76672 },
     },
     {
@@ -32,6 +36,10 @@ function seed() {
       images: ["https://foodish-api.com/images/rice/rice5.jpg"],
       reviewCount: 4,
       menuCount: 7,
+      discount: false,
+      bestSeller: true,
+      delivery: true,
+      lunch: true,
       priceRange: { min: 30599, max: 139161 },
     },
     {
@@ -43,6 +51,10 @@ function seed() {
       images: ["https://foodish-api.com/images/burger/burger1.jpg"],
       reviewCount: 2,
       menuCount: 4,
+      discount: true,
+      bestSeller: true,
+      delivery: true,
+      lunch: true,
       priceRange: { min: 43500, max: 148548 },
     },
     {
@@ -54,6 +66,10 @@ function seed() {
       images: ["https://foodish-api.com/images/dessert/cheesecake/cheesecake7.jpg"],
       reviewCount: 2,
       menuCount: 5,
+      discount: false,
+      bestSeller: false,
+      delivery: false,
+      lunch: true,
       priceRange: { min: 20928, max: 81193 },
     },
   ];
