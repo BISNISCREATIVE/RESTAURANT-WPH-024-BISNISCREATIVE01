@@ -175,9 +175,10 @@ export default function Index() {
           <div className="text-center mt-8">
             <Button
               variant="outline"
-              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              onClick={() => loadMore()}
+              disabled={!hasMore}
             >
-              Show More
+              {hasMore ? (loadingMore ? "Loading..." : "Show More") : "No more"}
             </Button>
           </div>
         </div>
