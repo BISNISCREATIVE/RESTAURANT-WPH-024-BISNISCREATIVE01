@@ -11,12 +11,12 @@ export type AggregatedMenusParams = {
 };
 
 async function fetchRestaurants(page = 1, limit = 12, q?: string) {
-  const { data } = await api.get("/api/resto", { params: { page, limit, q } });
+  const { data } = await api.get("/restaurants", { params: { page, limit, q } });
   return data?.data?.restaurants ?? [];
 }
 
 async function fetchMenusForRestaurant(id: number) {
-  const { data } = await api.get(`/api/resto/${id}`);
+  const { data } = await api.get(`/restaurants/${id}`);
   const menus: any[] = data?.data?.menus ?? [];
   const resto = data?.data?.restaurant ?? data?.data ?? {};
   return menus.map((m) => ({
