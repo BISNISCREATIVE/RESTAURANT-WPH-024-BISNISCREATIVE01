@@ -7,9 +7,22 @@ import ReviewModal from "@/components/ReviewModal";
 
 export default function Orders() {
   const [showReviewFor, setShowReviewFor] = useState<number | string | null>(null);
-  const orders = (
-    JSON.parse(localStorage.getItem("orders") || "[]") as any[]
-  ).slice(0, 50);
+  const [orders, setOrders] = useState<any[]>(() => JSON.parse(localStorage.getItem("orders") || "[]"));
+
+  // try to fetch from API when available
+  useEffect(() => {
+    let mounted = true;
+    (async () => {
+      try {
+        const { getOrders } = await import("@/services/api/orders");
+        const res = await getOrders();
+        if (mounted && Array.isArray(res)) setOrders(res.slice(0, 50));
+      } catch (err) {
+        // ignore
+      }
+    })();
+    return () => { mounted = false };
+  }, []);
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar onOpenCart={() => {}} />
