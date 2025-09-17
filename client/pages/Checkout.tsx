@@ -43,10 +43,11 @@ export default function Checkout() {
       const prev = JSON.parse(localStorage.getItem("orders") || "[]");
       prev.unshift(res);
       localStorage.setItem("orders", JSON.stringify(prev));
+      toast({ title: "Order placed", description: `Your order #${res.id ?? "-"} was placed.` });
       nav("/success");
     } catch (err) {
       console.error(err);
-      alert("Failed to place order. Please try again.");
+      toast({ title: "Order failed", description: "Failed to place order. Please try again.", });
     }
   }
 
