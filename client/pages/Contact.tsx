@@ -16,8 +16,10 @@ export default function Contact() {
       const res = await fetch("/api/contact", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
       const json = await res.json();
       setMsg(json.message || "Thanks");
+      toast({ title: 'Message sent', description: json.message || 'Thanks for contacting us' });
     } catch (err) {
       setMsg("Failed to send");
+      toast({ title: 'Failed', description: 'Failed to send message' });
     } finally {
       setLoading(false);
     }
