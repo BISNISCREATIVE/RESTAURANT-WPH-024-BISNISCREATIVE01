@@ -25,11 +25,11 @@ export default function ReviewModal({ restaurantId, onClose }: Props) {
     onSuccess: () => {
       qc.invalidateQueries(["restaurant", String(restaurantId)]);
       onClose();
-      alert("Thank you for your review!");
+      try { const { toast } = require("@/hooks/use-toast"); toast({ title: "Thank you!", description: "Your review was submitted." }); } catch (e) { }
     },
     onError: (err: any) => {
       console.error(err);
-      alert("Failed to submit review. Please try again later.");
+      try { const { toast } = require("@/hooks/use-toast"); toast({ title: "Failed", description: "Failed to submit review. Please try again later." }); } catch (e) { }
     },
   });
 
