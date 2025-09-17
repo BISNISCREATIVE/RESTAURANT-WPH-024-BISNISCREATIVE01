@@ -21,6 +21,7 @@ export default function Index() {
   }, [location.search]);
 
   const { data, isLoading } = useRecommendedQuery();
+  const { items, loading: loadingMore, hasMore, loadMore } = useRecommendedInfinite(12);
 
   return (
     <div className="min-h-screen flex flex-col">
