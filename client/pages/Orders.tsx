@@ -3,7 +3,15 @@ import Footer from "@/components/Footer";
 import dayjs from "dayjs";
 import { formatCurrency } from "@/lib/format";
 
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import dayjs from "dayjs";
+import { formatCurrency } from "@/lib/format";
+import { useState } from "react";
+import ReviewModal from "@/components/ReviewModal";
+
 export default function Orders() {
+  const [showReviewFor, setShowReviewFor] = useState<number | string | null>(null);
   const orders = (
     JSON.parse(localStorage.getItem("orders") || "[]") as any[]
   ).slice(0, 50);
@@ -30,12 +38,31 @@ export default function Orders() {
                     </li>
                   ))}
                 </ul>
+                <div className="mt-4 flex justify-end">
+                  <button
+                    onClick={() => {
+                      // open review modal for first item's restaurant
+                      const first = o.items?.[0];
+                      setShowReviewFor(first?.restaurantId ?? null);
+                    }}
+                    className="rounded-full bg-red-600 text-white px-4 py-2"
+                  >
+                    Give Review
+                  </button>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </main>
       <Footer />
+
+      {showReviewFor && (
+        <ReviewModal
+          restaurantId={showReviewFor}
+          onClose={() => setShowReviewFor(null)}
+        />
+      )}
     </div>
   );
 }
