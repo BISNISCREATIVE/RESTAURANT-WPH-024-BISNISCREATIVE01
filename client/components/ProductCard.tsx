@@ -9,6 +9,7 @@ import {
   removeFromCart,
 } from "@/features/cart/cartSlice";
 import { useCartMutations } from "@/services/queries/resto";
+import { toast } from "@/hooks/use-toast";
 
 export default function ProductCard({
   item,
