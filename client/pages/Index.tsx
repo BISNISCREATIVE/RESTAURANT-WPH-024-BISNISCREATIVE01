@@ -6,6 +6,7 @@ import ProductCard from "@/components/ProductCard";
 import { Button } from "@/components/ui/button";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useRecommendedQuery } from "@/services/queries/recommended";
+import { useRecommendedInfinite } from "@/services/queries/recommendedInfinite";
 
 export default function Index() {
   const [q, setQ] = useState("");
