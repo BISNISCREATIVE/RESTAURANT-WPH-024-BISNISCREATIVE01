@@ -195,6 +195,7 @@ export default function Index() {
               {hasMore ? (loadingMore ? "Loading..." : "Show More") : "No more"}
             </Button>
           </div>
+          <div ref={sentinelRef} />
         </div>
       </main>
 
