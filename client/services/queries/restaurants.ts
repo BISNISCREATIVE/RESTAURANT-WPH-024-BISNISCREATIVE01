@@ -11,7 +11,7 @@ export function useRestaurantsQuery(params: RestaurantsParams = {}) {
   return useQuery({
     queryKey: ["restaurants", params],
     queryFn: async () => {
-      const { data } = await api.get("/api/resto", { params });
+      const { data } = await api.get("/restaurants", { params });
       return data as {
         success: boolean;
         data: { restaurants: any[]; pagination: any };
@@ -26,7 +26,7 @@ export function useRestaurantQuery(id?: number | string) {
     enabled: Boolean(id),
     queryKey: ["restaurant", id],
     queryFn: async () => {
-      const { data } = await api.get(`/api/resto/${id}`);
+      const { data } = await api.get(`/restaurants/${id}`);
       return data as any;
     },
     staleTime: 60_000,
