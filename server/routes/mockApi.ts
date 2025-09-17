@@ -198,6 +198,51 @@ export const handleMockApi: RequestHandler = (req, res) => {
     return res.json({ success: true, data: m });
   }
 
+  // payment methods
+  if (req.path === "/payment-methods" && req.method === "GET") {
+    const pm = [
+      { id: "cash", name: "Cash on Delivery" },
+      { id: "va_bca", name: "Bank Transfer (BCA)" },
+      { id: "va_bni", name: "Bank Transfer (BNI)" },
+      { id: "credit", name: "Credit Card" },
+      { id: "ovo", name: "OVO" },
+    ];
+    return res.json({ success: true, data: pm });
+  }
+
+  // FAQ
+  if (req.path === "/faq" && req.method === "GET") {
+    const faqs = [
+      { id: 1, q: "How do I place an order?", a: "Browse restaurants, add items to cart, then checkout." },
+      { id: 2, q: "What payment methods are available?", a: "Cash, bank transfers, credit card, and e-wallets." },
+      { id: 3, q: "How do I track my order?", a: "Go to Track Order and enter your order id." },
+    ];
+    return res.json({ success: true, data: faqs });
+  }
+
+  // contact
+  if (req.path === "/contact" && req.method === "POST") {
+    const body = req.body || {};
+    // echo back
+    return res.json({ success: true, message: "Thanks for contacting us", data: body });
+  }
+
+  // track order (alias)
+  if (req.path.match(/^\/track\/.+/) && req.method === "GET") {
+    const id = Number(req.path.split("/")[2]);
+    const o = orders.find((x) => x.id === id);
+    if (!o) return res.status(404).json({ success: false, message: "Order not found" });
+    // simulate status timeline
+    const timeline = [
+      { status: "placed", time: o.createdAt },
+      { status: "accepted", time: new Date(new Date(o.createdAt).getTime() + 2 * 60 * 1000).toISOString() },
+      { status: "preparing", time: new Date(new Date(o.createdAt).getTime() + 10 * 60 * 1000).toISOString() },
+      { status: "out_for_delivery", time: new Date(new Date(o.createdAt).getTime() + 25 * 60 * 1000).toISOString() },
+      { status: "delivered", time: new Date(new Date(o.createdAt).getTime() + 40 * 60 * 1000).toISOString() },
+    ];
+    return res.json({ success: true, data: { order: o, timeline } });
+  }
+
   // add review
   if (req.path.match(/^\/restaurants\/\d+\/reviews$/) && req.method === "POST") {
     const parts = req.path.split("/");
