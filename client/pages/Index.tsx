@@ -98,32 +98,32 @@ export default function Index() {
             {[
               {
                 label: "All Food",
-                icon: "https://cdn.builder.io/api/v1/image/assets%2Fcf8594e38e724fa3abfa91ad793c6168%2Ff3d234f40c0d4f8da8accf41a74b7d66?format=webp&width=200",
+                icon: "/images/Frame 8 (All Restaurant).png",
                 query: "All Food",
               },
               {
                 label: "Nearby",
-                icon: "https://cdn.builder.io/api/v1/image/assets%2Fcf8594e38e724fa3abfa91ad793c6168%2F114b35c3fe2b4f92869f26bca6ec874b?format=webp&width=200",
+                icon: "/images/Frame 8 (Nearby).png",
                 query: "Nearby",
               },
               {
                 label: "Discount",
-                icon: "https://cdn.builder.io/api/v1/image/assets%2Fcf8594e38e724fa3abfa91ad793c6168%2F4afe48b5c2bf4028a8b106cd282b058e?format=webp&width=200",
+                icon: "/images/Frame 8 (Discount).png",
                 query: "Discount",
               },
               {
                 label: "Best Seller",
-                icon: "https://cdn.builder.io/api/v1/image/assets%2Fcf8594e38e724fa3abfa91ad793c6168%2F3ebde435ed16403780b9d6d88ee8f9dd?format=webp&width=200",
+                icon: "/images/Frame 8 (Best Seller).png",
                 query: "Best Seller",
               },
               {
                 label: "Delivery",
-                icon: "https://cdn.builder.io/api/v1/image/assets%2Fcf8594e38e724fa3abfa91ad793c6168%2F0553eea3c52146f6b62da0f34872136a?format=webp&width=200",
+                icon: "/images/Frame 8 (Delivery).png",
                 query: "Delivery",
               },
               {
                 label: "Lunch",
-                icon: "https://cdn.builder.io/api/v1/image/assets%2Fcf8594e38e724fa3abfa91ad793c6168%2Fc5bde48b0c644f1ab63e8a8b105117ee?format=webp&width=200",
+                icon: "/images/Frame 8 (Lunch).png",
                 query: "Lunch",
               },
             ].map((c) => {

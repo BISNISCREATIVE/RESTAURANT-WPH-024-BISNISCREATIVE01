@@ -1,21 +1,14 @@
-import * as React from "react";
+import { useEffect, useState } from 'react';
 
-const MOBILE_BREAKPOINT = 768;
+const MyComponent = () => {
+  const [width, setWidth] = useState(0);
 
-export function useIsMobile() {
-  const [isMobile, setIsMobile] = React.useState<boolean | undefined>(
-    undefined,
-  );
-
-  React.useEffect(() => {
-    const mql = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT - 1}px)`);
-    const onChange = () => {
-      setIsMobile(window.innerWidth < MOBILE_BREAKPOINT);
-    };
-    mql.addEventListener("change", onChange);
-    setIsMobile(window.innerWidth < MOBILE_BREAKPOINT);
-    return () => mql.removeEventListener("change", onChange);
+  useEffect(() => {
+    // Kode ini hanya berjalan di sisi klien
+    const handleResize = () => setWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  return !!isMobile;
-}
+  return <div>Lebar layar: {width}px</div>;
+};
