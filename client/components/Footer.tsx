@@ -7,7 +7,7 @@ export default function Footer() {
         <div className="md:col-span-2">
           <div className="flex items-center gap-3">
             <img
-              src="https://cdn.builder.io/api/v1/image/assets%2F54858901b0c442e6a38e6cc906052164%2F462b12e4225140b88803a67447d747f3?format=webp&width=800"
+              src="https://cdn.builder.io/api/v1/image/assets%2F54858901b0c442e6a38e6cc906052164%2Fbea3fb0257464385828d43cc8deb72cf?format=webp&width=120"
               alt="Foody"
               className="w-9 h-9"
             />
@@ -29,7 +29,7 @@ export default function Footer() {
               className="h-10 w-10 rounded-full border border-gray-700 grid place-items-center"
             >
               <img
-                src="https://cdn.builder.io/api/v1/image/assets%2F54858901b0c442e6a38e6cc906052164%2F12026922be734696948da66d9b86e840?format=webp&width=200"
+                src="https://cdn.builder.io/api/v1/image/assets%2F54858901b0c442e6a38e6cc906052164%2F7cea849898e0474fa51d2a2c751ba270?format=webp&width=200"
                 alt="facebook"
                 className="w-5 h-5"
               />
@@ -55,7 +55,7 @@ export default function Footer() {
               className="h-10 w-10 rounded-full border border-gray-700 grid place-items-center"
             >
               <img
-                src="https://cdn.builder.io/api/v1/image/assets%2F54858901b0c442e6a38e6cc906052164%2F9d251aae2446439e9ff1b3b5e158d2cb?format=webp&width=200"
+                src="https://cdn.builder.io/api/v1/image/assets%2F54858901b0c442e6a38e6cc906052164%2F12026922be734696948da66d9b86e840?format=webp&width=200"
                 alt="linkedin"
                 className="w-5 h-5"
               />
@@ -68,7 +68,7 @@ export default function Footer() {
               className="h-10 w-10 rounded-full border border-gray-700 grid place-items-center"
             >
               <img
-                src="https://cdn.builder.io/api/v1/image/assets%2F54858901b0c442e6a38e6cc906052164%2F7cea849898e0474fa51d2a2c751ba270?format=webp&width=200"
+                src="https://cdn.builder.io/api/v1/image/assets%2F54858901b0c442e6a38e6cc906052164%2F9d251aae2446439e9ff1b3b5e158d2cb?format=webp&width=200"
                 alt="tiktok"
                 className="w-5 h-5"
               />
